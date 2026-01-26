@@ -11,7 +11,7 @@
 .navbar.light {
     background-color: #004B87; /* Azul Sura para modo claro */
     color: white; /* Texto blanco */
-    --border-color: #00A651; /* Verde Sura */
+    --border-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
 }
 
 .navbar.dark {
@@ -45,17 +45,17 @@
 
 .navbar.light .nav-menu li button {
   color: #FFFFFF; /* Blanco en modo claro */
-  background-color: #D3D3D3; /* Gris ratón */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
 }
 
 .navbar.dark .nav-menu li button {
   color: #CFB87C; /* Oro en modo oscuro */
-  background-color: #D3D3D3; /* Gris ratón */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
 }
 
 .nav-menu li button:hover {
-  color: #004B87; /* Azul Sura en hover */
-  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semi-transparente en hover */
+  color: #FFFFFF; /* Blanco en hover - CAMBIADO */
+  background-color: #003D6B; /* Azul más oscuro en hover - CAMBIADO */
 }
 
 .navbar-right {
@@ -77,12 +77,12 @@
   font-size: 16px; /* Tamaño de fuente */
   width: 250px; /* Ancho fijo */
   transition: 0.5s; /* Transición suave */
-  background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
-  color: inherit; /* Heredar color */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente - AJUSTADO para mejor visibilidad */
+  color: #213547; /* Color de texto oscuro para legibilidad - AGREGADO */
 }
 
 .search-input:focus {
-  border-color: #00A651; /* Verde Sura en foco */
+  border-color: #0066CC; /* Azul medio en foco - CAMBIADO de verde a azul */
 }
 
 .search-button {
@@ -90,7 +90,7 @@
   border: 1px solid var(--border-color); /* Borde usando variable */
   border-left: none; /* Sin borde izquierdo */
   border-radius: 0 50px 50px 0; /* Bordes redondeados solo derecha */
-  background-color: #00A651; /* Verde Sura */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: white; /* Texto blanco */
   cursor: pointer; /* Cursor de puntero */
   font-size: 16px; /* Tamaño de fuente */
@@ -115,48 +115,11 @@
   background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semi-transparente en hover */
 }
 
-.search-box {
-  display: flex; /* Layout flexbox horizontal */
-  align-items: center; /* Alineación vertical centrada */
-}
-
-.search-input {
-  padding: 10px 20px; /* Espaciado interno */
-  border: 1px solid var(--input-border, #ced4da); /* Borde usando variable */
-  border-radius: 50px 0 0 50px; /* Bordes redondeados solo izquierda */
-  outline: none; /* Sin outline */
-  font-size: 16px; /* Tamaño de fuente */
-  width: 300px; /* Ancho fijo */
-  transition: 0.5s; /* Transición suave */
-  background-color: var(--input-bg, white); /* Fondo usando variable */
-  color: var(--input-color, #213547); /* Color de texto usando variable */
-}
-
-.search-input:focus {
-  border-color: #007bff; /* Borde azul en foco */
-}
-
-.search-button {
-  padding: 10px 20px; /* Espaciado interno */
-  border: 1px solid var(--input-border, #ced4da); /* Borde usando variable */
-  border-left: none; /* Sin borde izquierdo */
-  border-radius: 0 50px 50px 0; /* Bordes redondeados solo derecha */
-  background-color: var(--button-bg, #007bff); /* Fondo usando variable */
-  color: white; /* Texto blanco */
-  cursor: pointer; /* Cursor de puntero */
-  font-size: 16px; /* Tamaño de fuente */
-  transition: 0.5s; /* Transición suave */
-}
-
-.search-button:hover {
-  background-color: #0056b3; /* Fondo azul más oscuro en hover */
-}
-
 .login-button {
   padding: 10px 20px; /* Espaciado interno */
   border: 1px solid var(--border-color); /* Borde usando variable */
   border-radius: 50px; /* Bordes completamente redondeados */
-  background-color: #00A651; /* Verde Sura */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: white; /* Texto blanco */
   cursor: pointer; /* Cursor de puntero */
   font-size: 16px; /* Tamaño de fuente */
@@ -188,7 +151,7 @@
   padding: 8px 16px; /* Espaciado interno más pequeño */
   border: 1px solid var(--border-color); /* Borde usando variable */
   border-radius: 20px; /* Bordes redondeados */
-  background-color: #D3D3D3; /* Gris ratón */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
   color: #FFFFFF; /* Blanco */
   cursor: pointer; /* Cursor de puntero */
   font-size: 14px; /* Tamaño de fuente */
@@ -196,22 +159,22 @@
 }
 
 .logout-button:hover {
-  background-color: #BEBEBE; /* Gris ratón más oscuro en hover */
+  background-color: #003D6B; /* Azul más oscuro en hover - CAMBIADO */
 }
 
 .navbar.dark .logout-button {
-  background-color: #D3D3D3; /* Gris ratón en modo oscuro */
-  color: #CFB87C; /* Oro */
+  background-color: #0066CC; /* Azul medio en modo oscuro - CAMBIADO */
+  color: #FFFFFF; /* Blanco - CAMBIADO para mejor contraste */
 }
 
 .navbar.dark .logout-button:hover {
-  background-color: #333333; /* Gris oscuro en hover */
+  background-color: #003D6B; /* Azul oscuro en hover - CAMBIADO */
 }
 
 .dropbtn {
   background: none;
   border: none;
-  color: #007BFF; /* Azul claro */
+  color: #FFFFFF; /* Blanco - CAMBIADO para mejor contraste con fondo azul */
   cursor: pointer;
   font-size: 16px;
   padding: 8px 12px;
@@ -220,8 +183,22 @@
 }
 
 .dropbtn:hover {
-  color: #004B87; /* Azul oscuro en hover */
+  color: #FFFFFF; /* Blanco en hover - CAMBIADO */
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dropdown {
+  position: relative; /* Necesario para posicionar el dropdown */
+}
+
+.dropdown-content {
+  display: none; /* Oculto por defecto */
+  position: absolute; /* Posicionamiento absoluto */
+  min-width: 200px; /* Ancho mínimo */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra */
+  z-index: 1; /* Por encima de otros elementos */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-top: 8px; /* Espacio desde el botón */
 }
 
 .navbar.light .dropdown-content {
@@ -247,7 +224,7 @@
 }
 
 .dropdown-content button:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Hover sutil */
+  background-color: rgba(0, 102, 204, 0.1); /* Hover azul sutil - CAMBIADO */
 }
 
 .dropdown:hover .dropdown-content {
