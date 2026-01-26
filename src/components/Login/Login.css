@@ -2,164 +2,158 @@
   display: flex; /* Layout flexbox para centrar */
   justify-content: center; /* Centrado horizontal */
   align-items: center; /* Centrado vertical */
-  min-height: 100vh; /* Altura mínima de viewport */
-  background: linear-gradient(135deg, #004B87 0%, #0066CC 100%); /* CAMBIADO: Fondo gradiente azul Sura a azul medio (sin oro) */
+  min-height: calc(100vh - 80px); /* CORREGIDO: Altura que respeta el navbar */
   padding: 20px; /* Espaciado interno */
+  /* ELIMINADO: background gradient - el fondo lo maneja App.jsx */
 }
 
 .login-card {
-  background: rgba(255, 255, 255, 0.95); /* Fondo semi-transparente blanco */
-  border-radius: 15px; /* REDUCIDO: de 20px a 15px */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* REDUCIDO: sombra menos profunda */
-  padding: 25px; /* REDUCIDO: de 40px a 25px - más compacto */
-  width: 100%; /* Ancho completo */
-  max-width: 350px; /* REDUCIDO: de 400px a 350px - más pequeño */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque de fondo */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+  background: rgba(255, 255, 255, 0.98); /* AUMENTADO: más opaco para evitar transparencias */
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 75, 135, 0.15); /* CORREGIDO: Sombra azul Sura más sutil */
+  padding: 25px;
+  width: 100%;
+  max-width: 350px;
+  /* ELIMINADO: backdrop-filter - causaba problemas de capas */
+  border: 1px solid rgba(0, 102, 204, 0.2); /* CORREGIDO: Borde azul sutil */
 }
 
 .login-title {
-  text-align: center; /* Alineación centrada */
-  margin-bottom: 20px; /* REDUCIDO: de 30px a 20px */
-  color: #004B87; /* CAMBIADO: Azul Sura en lugar de negro */
-  font-size: 1.6rem; /* REDUCIDO: de 2rem a 1.6rem - más pequeño */
-  font-weight: 600; /* Peso semi-bold */
+  text-align: center;
+  margin-bottom: 20px;
+  color: #004B87; /* Azul Sura */
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .login-form {
-  display: flex; /* Layout flexbox */
-  flex-direction: column; /* Dirección vertical */
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group {
-  margin-bottom: 15px; /* REDUCIDO: de 20px a 15px - más compacto */
+  margin-bottom: 15px;
 }
 
 .form-group label {
-  display: block; /* Display block para ocupar línea completa */
-  margin-bottom: 6px; /* REDUCIDO: de 8px a 6px */
-  color: #004B87; /* CAMBIADO: Azul Sura en lugar de gris */
-  font-weight: 500; /* Peso medio */
-  font-size: 0.9rem; /* REDUCIDO: de 1rem a 0.9rem - más pequeño */
+  display: block;
+  margin-bottom: 6px;
+  color: #004B87; /* Azul Sura */
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .form-group input {
-  width: 100%; /* Ancho completo */
-  padding: 10px 14px; /* REDUCIDO: de 12px 16px - más compacto */
-  border: 2px solid #0066CC; /* CAMBIADO: Borde azul en lugar de gris */
-  border-radius: 8px; /* REDUCIDO: de 10px a 8px */
-  font-size: 0.95rem; /* REDUCIDO: de 1rem a 0.95rem */
-  transition: all 0.3s ease; /* Transición suave para todos los cambios */
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #0066CC; /* Borde azul */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
   background: #f8f9fa; /* Fondo gris muy claro */
-  color: #004B87; /* CAMBIADO: Color azul en lugar de morado */
-  box-sizing: border-box; /* Box-sizing para incluir padding en ancho */
+  color: #004B87; /* Color azul */
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
-  outline: none; /* Sin outline por defecto */
-  border-color: #004B87; /* CAMBIADO: Borde azul Sura en foco */
-  background: #FFFFFF; /* CAMBIADO: Fondo blanco en foco */
-  color: #004B87; /* Color azul */
-  box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.1); /* CAMBIADO: Sombra azul sutil */
+  outline: none;
+  border-color: #004B87; /* Borde azul Sura en foco */
+  background: #FFFFFF; /* Fondo blanco en foco */
+  color: #004B87;
+  box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.1); /* Sombra azul sutil */
 }
 
 .form-group select {
-  width: 100%; /* Ancho completo */
-  padding: 10px 14px; /* REDUCIDO: de 12px 16px - más compacto */
-  border: 2px solid #0066CC; /* CAMBIADO: Borde azul en lugar de gris */
-  border-radius: 8px; /* REDUCIDO: de 10px a 8px */
-  font-size: 0.95rem; /* REDUCIDO: de 1rem a 0.95rem */
-  transition: all 0.3s ease; /* Transición suave para todos los cambios */
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #0066CC; /* Borde azul */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
   background: #f8f9fa; /* Fondo gris muy claro */
-  color: #004B87; /* CAMBIADO: Color azul en lugar de morado */
-  box-sizing: border-box; /* Box-sizing para incluir padding en ancho */
-  cursor: pointer; /* Cursor de puntero */
+  color: #004B87; /* Color azul */
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .form-group select:focus {
-  outline: none; /* Sin outline por defecto */
-  border-color: #004B87; /* CAMBIADO: Borde azul Sura en foco */
-  background: #FFFFFF; /* CAMBIADO: Fondo blanco en foco */
-  color: #004B87; /* Color azul */
-  box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.1); /* CAMBIADO: Sombra azul sutil */
+  outline: none;
+  border-color: #004B87; /* Borde azul Sura en foco */
+  background: #FFFFFF; /* Fondo blanco en foco */
+  color: #004B87;
+  box-shadow: 0 0 0 3px rgba(0, 75, 135, 0.1); /* Sombra azul sutil */
 }
 
 .submit-btn {
-  background-color: #0066CC; /* CAMBIADO: Azul medio en lugar de gris */
+  background-color: #0066CC; /* Azul medio */
   color: #FFFFFF; /* Blanco */
-  border: none; /* Sin borde */
-  padding: 12px; /* REDUCIDO: de 14px - más compacto */
-  border-radius: 8px; /* REDUCIDO: de 10px a 8px */
-  font-size: 1rem; /* REDUCIDO: de 1.1rem */
-  font-weight: 600; /* Peso semi-bold */
-  cursor: pointer; /* Cursor de puntero */
-  transition: all 0.3s ease; /* Transición suave */
-  margin-top: 8px; /* REDUCIDO: de 10px */
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
 }
 
 .submit-btn:hover {
-  background-color: #004B87; /* CAMBIADO: Azul Sura en hover */
-  transform: translateY(-2px); /* Elevación en hover */
-  box-shadow: 0 8px 16px rgba(0, 75, 135, 0.3); /* CAMBIADO: Sombra azul en hover */
-}
-
-.dark .submit-btn {
-  background-color: #0066CC; /* Azul medio en modo oscuro */
-  color: #FFFFFF; /* Blanco */
-}
-
-.dark .submit-btn:hover {
-  background-color: #003D6B; /* Azul oscuro en hover modo oscuro */
+  background-color: #004B87; /* Azul Sura en hover */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 75, 135, 0.3); /* Sombra azul en hover */
 }
 
 .form-switch {
-  margin-top: 15px; /* REDUCIDO: de 20px */
-  text-align: center; /* Alineación centrada */
+  margin-top: 15px;
+  text-align: center;
+  display: flex; /* AGREGADO: Flexbox para centrar mejor */
+  flex-direction: column; /* AGREGADO: Dirección vertical */
+  gap: 8px; /* AGREGADO: Espaciado entre botones */
 }
 
 .switch-btn {
-  background: none; /* Sin fondo */
-  border: none; /* Sin borde */
-  color: #0066CC; /* CAMBIADO: Azul medio en lugar de otro azul */
-  cursor: pointer; /* Cursor de puntero */
-  font-size: 0.85rem; /* REDUCIDO: de 0.9rem - más pequeño */
-  margin: 4px; /* REDUCIDO: de 5px */
-  padding: 6px; /* REDUCIDO: de 8px */
-  border-radius: 5px; /* Bordes ligeramente redondeados */
-  transition: background 0.3s ease; /* Transición suave para fondo */
+  background: none;
+  border: none;
+  color: #0066CC; /* Azul medio */
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 6px;
+  border-radius: 5px;
+  transition: all 0.3s ease; /* CORREGIDO: Transición para todos los cambios */
 }
 
 .switch-btn:hover {
-  background: rgba(0, 102, 204, 0.1); /* CAMBIADO: Fondo azul claro en hover */
-  color: #004B87; /* CAMBIADO: Azul Sura en hover */
+  background: rgba(0, 102, 204, 0.1); /* Fondo azul claro en hover */
+  color: #004B87; /* Azul Sura en hover */
 }
 
 .back-btn {
   background: #6c757d; /* Fondo gris */
-  color: white; /* Texto blanco */
-  border: none; /* Sin borde */
-  padding: 8px 16px; /* REDUCIDO: de 10px 20px - más compacto */
-  border-radius: 8px; /* REDUCIDO: de 10px a 8px */
-  font-size: 0.95rem; /* REDUCIDO: de 1rem */
-  cursor: pointer; /* Cursor de puntero */
-  transition: all 0.3s ease; /* Transición suave */
-  margin-top: 15px; /* REDUCIDO: de 20px */
-  width: 100%; /* Ancho completo */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  width: 100%;
 }
 
 .back-btn:hover {
   background: #5a6268; /* Fondo gris más oscuro en hover */
-  transform: translateY(-1px); /* Elevación ligera */
+  transform: translateY(-1px);
 }
 
 /* Ajustes para modo oscuro */
 .dark .login-card {
-  background: rgba(33, 37, 41, 0.95); /* Fondo oscuro semi-transparente */
-  color: #fff; /* Texto blanco */
+  background: rgba(33, 37, 41, 0.98); /* AUMENTADO: más opaco */
+  color: #fff;
+  border: 1px solid rgba(0, 102, 204, 0.3); /* AGREGADO: Borde visible en modo oscuro */
 }
 
 .dark .login-title {
-  color: #0066CC; /* CAMBIADO: Azul medio en modo oscuro */
+  color: #0066CC; /* Azul medio en modo oscuro */
 }
 
 .dark .form-group label {
@@ -168,31 +162,42 @@
 
 .dark .form-group input {
   background: #495057; /* Fondo gris medio */
-  border-color: #0066CC; /* CAMBIADO: Borde azul */
+  border-color: #0066CC; /* Borde azul */
   color: #fff; /* Texto blanco */
 }
 
 .dark .form-group input:focus {
   background: #343a40; /* Fondo gris más oscuro en foco */
-  border-color: #0066CC; /* CAMBIADO: Borde azul */
+  border-color: #0066CC; /* Borde azul */
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2); /* CORREGIDO: Sombra azul para modo oscuro */
 }
 
 .dark .form-group select {
-  background: #495057; /* Fondo gris medio para select en modo oscuro */
-  border-color: #0066CC; /* CAMBIADO: Borde azul */
+  background: #495057; /* Fondo gris medio */
+  border-color: #0066CC; /* Borde azul */
   color: #fff; /* Texto blanco */
 }
 
 .dark .form-group select:focus {
   background: #343a40; /* Fondo gris más oscuro en foco */
-  border-color: #0066CC; /* CAMBIADO: Borde azul */
+  border-color: #0066CC; /* Borde azul */
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2); /* CORREGIDO: Sombra azul para modo oscuro */
+}
+
+.dark .submit-btn {
+  background-color: #0066CC; /* Azul medio en modo oscuro */
+  color: #FFFFFF;
+}
+
+.dark .submit-btn:hover {
+  background-color: #003D6B; /* Azul oscuro en hover */
 }
 
 .dark .switch-btn {
-  color: #0066CC; /* CAMBIADO: Azul medio para botones de cambio en modo oscuro */
+  color: #0066CC; /* Azul medio */
 }
 
 .dark .switch-btn:hover {
-  background: rgba(0, 102, 204, 0.2); /* CAMBIADO: Fondo azul en hover modo oscuro */
-  color: #FFFFFF; /* Blanco en hover */
+  background: rgba(0, 102, 204, 0.2); /* Fondo azul en hover */
+  color: #FFFFFF;
 }
