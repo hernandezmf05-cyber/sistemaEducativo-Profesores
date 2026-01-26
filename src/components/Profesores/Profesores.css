@@ -4,9 +4,20 @@
   min-height: 100vh;
 }
 
+/* AGREGADO: Estilos para modo oscuro */
+.dark .profesores-container {
+  background-color: transparent; /* Fondo transparente para mostrar el gradiente del App */
+}
+
 .profesores-container h2 {
   color: #004B87; /* Azul Sura */
   text-align: center;
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .profesores-container h2 {
+  color: #FFFFFF; /* Blanco para mejor contraste */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
 }
 
 .search-bar {
@@ -56,6 +67,13 @@
   text-align: center;
 }
 
+/* AGREGADO: Estilos para modo oscuro */
+.dark .profesor-card {
+  background-color: #1a1a2e; /* Azul muy oscuro */
+  border: 1px solid #0066CC; /* Borde azul */
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2); /* Sombra azul */
+}
+
 .profesor-foto {
   width: 100px;
   height: 100px;
@@ -69,9 +87,19 @@
   margin: 10px 0;
 }
 
+/* AGREGADO: Color para modo oscuro */
+.dark .profesor-card h3 {
+  color: #FFFFFF; /* Blanco */
+}
+
 .profesor-card p {
   color: #004B87;
   margin: 5px 0;
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .profesor-card p {
+  color: #E0E0E0; /* Gris claro */
 }
 
 .profesor-card button {
@@ -103,6 +131,14 @@
   border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
 }
 
+/* AGREGADO: Estilos para perfil en modo oscuro */
+.dark .profesor-profile {
+  background-color: #1a1a2e; /* Azul muy oscuro */
+  color: #FFFFFF; /* Blanco */
+  border: 2px solid #0066CC; /* Borde azul */
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3); /* Sombra azul */
+}
+
 .profesor-foto-large {
   width: 120px; /* REDUCIDO de 150px a 120px - más pequeño */
   height: 120px; /* REDUCIDO de 150px a 120px */
@@ -117,6 +153,11 @@
   margin-bottom: 10px; /* REDUCIDO de 12px a 10px */
   font-size: 1.4rem; /* REDUCIDO de 1.6rem a 1.4rem - más pequeño */
   text-align: center;
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .profesor-profile h3 {
+  color: #FFFFFF; /* Blanco */
 }
 
 .profesor-info {
@@ -134,10 +175,21 @@
   border-left: 2px solid #0066CC; /* REDUCIDO de 3px a 2px - Azul medio */
 }
 
+/* AGREGADO: Estilos para modo oscuro */
+.dark .info-section {
+  background-color: #0f0f23; /* Azul muy muy oscuro */
+  border-left: 2px solid #0066CC; /* Borde azul */
+}
+
 .info-section h4 {
   color: #004B87; /* Azul Sura */
   margin-bottom: 5px; /* REDUCIDO de 6px a 5px */
   font-size: 0.95rem; /* REDUCIDO de 1rem a 0.95rem - más pequeño */
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .info-section h4 {
+  color: #0066CC; /* Azul medio */
 }
 
 .info-section p, .info-section ul {
@@ -145,6 +197,12 @@
   margin: 3px 0; /* REDUCIDO de 4px a 3px */
   line-height: 1.3; /* REDUCIDO de 1.4 a 1.3 - más compacto */
   font-size: 0.85rem; /* REDUCIDO de 0.9rem a 0.85rem - más pequeño */
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .info-section p,
+.dark .info-section ul {
+  color: #E0E0E0; /* Gris claro */
 }
 
 .info-section ul {
@@ -159,6 +217,13 @@
   border-radius: 3px; /* REDUCIDO de 4px a 3px */
   border: 1px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   font-size: 0.8rem; /* REDUCIDO de 0.85rem a 0.8rem - más pequeño */
+}
+
+/* AGREGADO: Estilos para modo oscuro */
+.dark .info-section li {
+  background-color: #16213e; /* Azul oscuro medio */
+  border: 1px solid #0066CC; /* Borde azul */
+  color: #E0E0E0; /* Gris claro */
 }
 
 .download-cv {
@@ -222,6 +287,13 @@ form {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* AGREGADO: Estilos para formularios en modo oscuro */
+.dark form {
+  background-color: #1a1a2e; /* Azul muy oscuro */
+  border: 1px solid #0066CC; /* Borde azul */
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2); /* Sombra azul */
+}
+
 form input, form textarea, form select {
   margin: 10px 0;
   padding: 10px;
@@ -229,6 +301,22 @@ form input, form textarea, form select {
   border-radius: 4px;
   background-color: #FFFFFF; /* Blanco para alto contraste */
   color: #004B87; /* Azul Sura oscuro */
+}
+
+/* AGREGADO: Estilos para inputs en modo oscuro */
+.dark form input,
+.dark form textarea,
+.dark form select {
+  background-color: #0f0f23; /* Azul muy muy oscuro */
+  border: 2px solid #0066CC; /* Borde azul */
+  color: #FFFFFF; /* Texto blanco */
+}
+
+.dark form input:focus,
+.dark form textarea:focus,
+.dark form select:focus {
+  background-color: #16213e; /* Azul oscuro medio al hacer focus */
+  border-color: #0066CC; /* Borde azul */
 }
 
 form button {

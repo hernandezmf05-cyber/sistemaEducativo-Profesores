@@ -15,9 +15,9 @@
 }
 
 .navbar.dark {
-    background-color: #666666; /* Gris medio para modo oscuro */
-    color: #CFB87C; /* Oro Colorado */
-    --border-color: #004B87; /* Azul Sura */
+    background-color: #1a1a2e; /* CAMBIADO: Azul muy oscuro en lugar de gris */
+    color: #FFFFFF; /* CAMBIADO: Blanco en lugar de oro para mejor contraste */
+    --border-color: #0066CC; /* Azul medio */
 }
 
 .navbar-left {
@@ -49,7 +49,7 @@
 }
 
 .navbar.dark .nav-menu li button {
-  color: #CFB87C; /* Oro en modo oscuro */
+  color: #FFFFFF; /* CAMBIADO: Blanco en modo oscuro para mejor contraste */
   background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
 }
 
@@ -211,8 +211,8 @@
 }
 
 .navbar.dark .dropdown-content {
-  background-color: #333333; /* Gris oscuro */
-  color: #CFB87C; /* Oro */
+  background-color: #1a1a2e; /* CAMBIADO: Azul muy oscuro igual que navbar */
+  color: #FFFFFF; /* CAMBIADO: Blanco para mejor contraste */
   border: 2px solid #0066CC; /* AGREGADO: Borde azul en modo oscuro */
 }
 

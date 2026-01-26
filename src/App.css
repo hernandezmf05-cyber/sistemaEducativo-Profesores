@@ -16,11 +16,11 @@
 }
 
 .dark .login-button {
-  color: #CFB87C; /* Oro para texto en modo oscuro */
+  color: #FFFFFF; /* CAMBIADO: Blanco en lugar de oro para mejor contraste */
 }
 
 .dark .App {
-  background: linear-gradient(135deg, #555555 0%, #777777 100%); /* Gradiente gris medio para modo oscuro */
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%); /* CAMBIADO: Gradiente azul muy oscuro profesional */
 }
 
 .App-header {
@@ -38,8 +38,9 @@
 }
 
 .dark .App-header {
-  background: rgba(33, 37, 41, 0.8); /* Fondo para modo oscuro */
-  color: #fff; /* Color de texto blanco */
+  background: rgba(26, 26, 46, 0.9); /* CAMBIADO: Fondo azul muy oscuro con más opacidad */
+  color: #FFFFFF; /* CAMBIADO: Texto blanco para mejor contraste */
+  border: 1px solid #0066CC; /* AGREGADO: Borde azul sutil */
 }
 
 .logo {
@@ -62,6 +63,17 @@
   font-weight: 700; /* Peso de fuente bold */
 }
 
+.dark .App-header h1 {
+  background: linear-gradient(135deg, #0066CC, #004B87); /* AGREGADO: Gradiente azul para modo oscuro */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .App-header p {
+  color: #E0E0E0; /* AGREGADO: Color gris claro para mejor legibilidad en modo oscuro */
+}
+
 .card {
   padding: 2em; /* Espaciado interno */
   background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
@@ -76,13 +88,19 @@
 }
 
 .dark .card {
-  background: rgba(52, 58, 64, 0.9); /* Fondo para modo oscuro */
+  background: rgba(26, 26, 46, 0.95); /* CAMBIADO: Fondo azul muy oscuro */
+  border: 1px solid #0066CC; /* AGREGADO: Borde azul */
+  color: #FFFFFF; /* AGREGADO: Texto blanco */
 }
 
 .read-the-docs {
   color: #888; /* Color gris */
   font-style: italic; /* Estilo cursiva */
   margin-top: 1rem; /* Margen superior */
+}
+
+.dark .read-the-docs {
+  color: #B0B0B0; /* AGREGADO: Gris más claro en modo oscuro */
 }
 
 button {
