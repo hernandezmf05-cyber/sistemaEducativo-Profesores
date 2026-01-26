@@ -13,7 +13,7 @@
   width: 100%;
   padding: 10px;
   margin: 20px 0;
-  border: 2px solid #00A651; /* Verde Sura */
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   border-radius: 5px;
   font-size: 16px;
   background-color: #FFFFFF;
@@ -29,7 +29,7 @@
   width: 100%;
   padding: 10px;
   margin: 20px 0;
-  border: 2px solid #00A651;
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   border-radius: 5px;
   font-size: 16px;
   background-color: #FFFFFF;
@@ -80,7 +80,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #00A651; /* Verde Sura */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: white;
 }
 
@@ -94,28 +94,28 @@
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   padding: 30px;
-  max-width: 800px;
+  max-width: 800px; /* TAMAÑO ORIGINAL - se puede reducir si necesitas */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Arial', sans-serif;
-  border: 2px solid #00A651; /* Borde verde Sura */
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
 }
 
 .profesor-foto-large {
-  width: 250px;
-  height: 250px;
+  width: 200px; /* REDUCIDO de 250px a 200px para hacer más compacto */
+  height: 200px; /* REDUCIDO de 250px a 200px */
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* REDUCIDO de 20px a 15px */
   border: 4px solid #004B87; /* Borde azul Sura */
 }
 
 .profesor-profile h3 {
   color: #004B87; /* Azul Sura */
   margin-bottom: 15px;
-  font-size: 2rem;
+  font-size: 1.8rem; /* REDUCIDO de 2rem a 1.8rem para más compacto */
   text-align: center;
 }
 
@@ -123,27 +123,28 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 15px; /* REDUCIDO de 20px a 15px */
+  margin-bottom: 15px; /* REDUCIDO de 20px a 15px */
 }
 
 .info-section {
   background-color: #F0F8FF; /* Azul muy claro */
-  padding: 15px;
+  padding: 12px; /* REDUCIDO de 15px a 12px para más compacto */
   border-radius: 8px;
-  border-left: 4px solid #00A651; /* Borde verde Sura */
+  border-left: 4px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
 }
 
 .info-section h4 {
   color: #004B87; /* Azul Sura */
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 8px; /* REDUCIDO de 10px a 8px */
+  font-size: 1.1rem; /* REDUCIDO de 1.2rem a 1.1rem */
 }
 
 .info-section p, .info-section ul {
   color: #333333; /* Gris oscuro para legibilidad */
   margin: 5px 0;
-  line-height: 1.6;
+  line-height: 1.5; /* REDUCIDO de 1.6 a 1.5 */
+  font-size: 0.95rem; /* AGREGADO para hacer texto más compacto */
 }
 
 .info-section ul {
@@ -154,26 +155,27 @@
 .info-section li {
   background-color: #E6F3FF; /* Azul aún más claro */
   margin: 5px 0;
-  padding: 8px;
+  padding: 6px; /* REDUCIDO de 8px a 6px */
   border-radius: 4px;
-  border: 1px solid #00A651;
+  border: 1px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
+  font-size: 0.9rem; /* AGREGADO para hacer texto más compacto */
 }
 
 .download-cv {
-  background-color: #00A651; /* Verde Sura */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: #FFFFFF; /* Blanco */
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px; /* REDUCIDO de 12px 24px para más compacto */
   border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem; /* REDUCIDO de 1rem */
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 15px; /* REDUCIDO de 20px */
   transition: 0.3s;
 }
 
 .download-cv:hover {
-  background-color: #008F4C; /* Verde más oscuro */
+  background-color: #004B87; /* Azul Sura - CAMBIADO de verde oscuro */
 }
 
 .back-button {
@@ -184,7 +186,7 @@
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
-  margin-top: 20px;
+  margin-top: 15px; /* REDUCIDO de 20px */
   transition: 0.3s;
 }
 
@@ -223,7 +225,7 @@ form {
 form input, form textarea, form select {
   margin: 10px 0;
   padding: 10px;
-  border: 2px solid #00A651; /* Verde Sura */
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   border-radius: 4px;
   background-color: #FFFFFF; /* Blanco para alto contraste */
   color: #004B87; /* Azul Sura oscuro */
@@ -231,7 +233,7 @@ form input, form textarea, form select {
 
 form button {
   padding: 10px;
-  background-color: #D3D3D3; /* Gris ratón */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
   color: #FFFFFF; /* Blanco */
   border: none;
   border-radius: 4px;
@@ -241,21 +243,17 @@ form button {
 }
 
 form button:hover {
-  background-color: #BEBEBE; /* Gris ratón más oscuro */
+  background-color: #004B87; /* Azul Sura - CAMBIADO */
+  color: white;
 }
 
 .dark form button {
-  background-color: #D3D3D3; /* Gris ratón en modo oscuro */
-  color: #CFB87C; /* Oro */
+  background-color: #0066CC; /* Azul medio en modo oscuro - CAMBIADO */
+  color: #FFFFFF; /* Blanco - CAMBIADO para mejor contraste */
 }
 
 .dark form button:hover {
-  background-color: #333333; /* Gris oscuro */
-}
-
-form button:hover {
-  background-color: #004B87;
-  color: white;
+  background-color: #003D6B; /* Azul oscuro - CAMBIADO */
 }
 
 .cursos-list {
@@ -278,4 +276,30 @@ form button:hover {
 
 .cursos-list input {
   margin-right: 10px;
+}
+
+/* AGREGADO: Estilos para vista previa de foto en formularios */
+.foto-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #F0F8FF;
+  border-radius: 8px;
+  border: 2px solid #0066CC;
+}
+
+.foto-preview p {
+  margin: 0 0 10px 0;
+  color: #004B87;
+  font-weight: bold;
+}
+
+.preview-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #004B87;
 }

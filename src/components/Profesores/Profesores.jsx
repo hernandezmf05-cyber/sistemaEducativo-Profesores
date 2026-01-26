@@ -7,6 +7,9 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
   const [formData, setFormData] = useState({ nombre: '', especialidad: '', foto: '', descripcion: '', hojaDeVidaFile: null, fotoFile: null });
   const [selectedCursos, setSelectedCursos] = useState([]);
 
+  // AGREGADO: URL de avatar por defecto (imagen de usuario genérico)
+  const defaultAvatar = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+
   useEffect(() => {
     if (currentView === 'profesores-add') {
       setEditing(null);
@@ -102,7 +105,13 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
         <div className="profesores-grid">
           {listToShow.map(prof => (
             <div key={prof.id} className="profesor-card">
-              <img src={prof.foto} alt={prof.nombre} className="profesor-foto" />
+              {/* MODIFICADO: Usar defaultAvatar si no hay foto */}
+              <img 
+                src={prof.foto || defaultAvatar} 
+                alt={prof.nombre} 
+                className="profesor-foto" 
+                onError={(e) => { e.target.src = defaultAvatar; }} // AGREGADO: Si falla la carga, mostrar avatar por defecto
+              />
               <h3>{prof.nombre}</h3>
               <p>{prof.especialidad}</p>
               {isAdmin && <p>Estado: {prof.estado}</p>}
@@ -127,7 +136,13 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
       <div className="profesores-container">
         <h2>Perfil del Profesor</h2>
         <div className="profesor-profile">
-          <img src={selectedProf.foto} alt={selectedProf.nombre} className="profesor-foto-large" />
+          {/* MODIFICADO: Usar defaultAvatar si no hay foto */}
+          <img 
+            src={selectedProf.foto || defaultAvatar} 
+            alt={selectedProf.nombre} 
+            className="profesor-foto-large" 
+            onError={(e) => { e.target.src = defaultAvatar; }} // AGREGADO: Si falla la carga, mostrar avatar por defecto
+          />
           <h3>{selectedProf.nombre}</h3>
           <div className="profesor-info">
             <div className="info-section">
@@ -172,6 +187,18 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
           <input name="foto" value={formData.foto} onChange={handleInputChange} placeholder="URL Foto (opcional)" />
           <label>Foto desde archivo:</label>
           <input type="file" name="fotoFile" accept="image/*" onChange={handleFileChange} />
+          {/* AGREGADO: Vista previa de la foto */}
+          {formData.foto && (
+            <div className="foto-preview">
+              <p>Vista previa:</p>
+              <img 
+                src={formData.foto || defaultAvatar} 
+                alt="Vista previa" 
+                className="preview-image"
+                onError={(e) => { e.target.src = defaultAvatar; }}
+              />
+            </div>
+          )}
           <textarea name="descripcion" value={formData.descripcion} onChange={handleInputChange} placeholder="Descripción" />
           <label>Hoja de Vida:</label>
           <input type="file" name="hojaDeVidaFile" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
@@ -193,6 +220,18 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
             <input name="foto" value={formData.foto} onChange={handleInputChange} placeholder="URL Foto (opcional)" />
             <label>Foto desde archivo:</label>
             <input type="file" name="fotoFile" accept="image/*" onChange={handleFileChange} />
+            {/* AGREGADO: Vista previa de la foto */}
+            {formData.foto && (
+              <div className="foto-preview">
+                <p>Vista previa:</p>
+                <img 
+                  src={formData.foto || defaultAvatar} 
+                  alt="Vista previa" 
+                  className="preview-image"
+                  onError={(e) => { e.target.src = defaultAvatar; }}
+                />
+              </div>
+            )}
             <textarea name="descripcion" value={formData.descripcion} onChange={handleInputChange} placeholder="Descripción" />
             <label>Hoja de Vida:</label>
             <input type="file" name="hojaDeVidaFile" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
