@@ -91,11 +91,11 @@
 .profesor-profile {
   background-color: #FFFFFF; /* Blanco para fondo claro */
   color: #004B87; /* Azul Sura para texto */
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 30px;
-  max-width: 800px; /* TAMAÑO ORIGINAL - se puede reducir si necesitas */
-  margin: 0 auto;
+  border-radius: 10px; /* REDUCIDO de 12px a 10px */
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1); /* REDUCIDO sombra */
+  padding: 15px; /* REDUCIDO de 20px a 15px */
+  max-width: 500px; /* REDUCIDO de 650px a 500px - mucho más compacto */
+  margin: 15px auto; /* REDUCIDO de 20px a 15px */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,18 +104,18 @@
 }
 
 .profesor-foto-large {
-  width: 200px; /* REDUCIDO de 250px a 200px para hacer más compacto */
-  height: 200px; /* REDUCIDO de 250px a 200px */
+  width: 120px; /* REDUCIDO de 150px a 120px - más pequeño */
+  height: 120px; /* REDUCIDO de 150px a 120px */
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px; /* REDUCIDO de 20px a 15px */
-  border: 4px solid #004B87; /* Borde azul Sura */
+  margin-bottom: 8px; /* REDUCIDO de 10px a 8px */
+  border: 2px solid #004B87; /* REDUCIDO de 3px a 2px */
 }
 
 .profesor-profile h3 {
   color: #004B87; /* Azul Sura */
-  margin-bottom: 15px;
-  font-size: 1.8rem; /* REDUCIDO de 2rem a 1.8rem para más compacto */
+  margin-bottom: 10px; /* REDUCIDO de 12px a 10px */
+  font-size: 1.4rem; /* REDUCIDO de 1.6rem a 1.4rem - más pequeño */
   text-align: center;
 }
 
@@ -123,28 +123,28 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px; /* REDUCIDO de 20px a 15px */
-  margin-bottom: 15px; /* REDUCIDO de 20px a 15px */
+  gap: 10px; /* REDUCIDO de 12px a 10px */
+  margin-bottom: 10px; /* REDUCIDO de 12px a 10px */
 }
 
 .info-section {
   background-color: #F0F8FF; /* Azul muy claro */
-  padding: 12px; /* REDUCIDO de 15px a 12px para más compacto */
-  border-radius: 8px;
-  border-left: 4px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
+  padding: 8px; /* REDUCIDO de 10px a 8px - más compacto */
+  border-radius: 5px; /* REDUCIDO de 6px a 5px */
+  border-left: 2px solid #0066CC; /* REDUCIDO de 3px a 2px - Azul medio */
 }
 
 .info-section h4 {
   color: #004B87; /* Azul Sura */
-  margin-bottom: 8px; /* REDUCIDO de 10px a 8px */
-  font-size: 1.1rem; /* REDUCIDO de 1.2rem a 1.1rem */
+  margin-bottom: 5px; /* REDUCIDO de 6px a 5px */
+  font-size: 0.95rem; /* REDUCIDO de 1rem a 0.95rem - más pequeño */
 }
 
 .info-section p, .info-section ul {
   color: #333333; /* Gris oscuro para legibilidad */
-  margin: 5px 0;
-  line-height: 1.5; /* REDUCIDO de 1.6 a 1.5 */
-  font-size: 0.95rem; /* AGREGADO para hacer texto más compacto */
+  margin: 3px 0; /* REDUCIDO de 4px a 3px */
+  line-height: 1.3; /* REDUCIDO de 1.4 a 1.3 - más compacto */
+  font-size: 0.85rem; /* REDUCIDO de 0.9rem a 0.85rem - más pequeño */
 }
 
 .info-section ul {
@@ -154,23 +154,23 @@
 
 .info-section li {
   background-color: #E6F3FF; /* Azul aún más claro */
-  margin: 5px 0;
-  padding: 6px; /* REDUCIDO de 8px a 6px */
-  border-radius: 4px;
+  margin: 3px 0; /* REDUCIDO de 4px a 3px */
+  padding: 4px; /* REDUCIDO de 5px a 4px - más compacto */
+  border-radius: 3px; /* REDUCIDO de 4px a 3px */
   border: 1px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
-  font-size: 0.9rem; /* AGREGADO para hacer texto más compacto */
+  font-size: 0.8rem; /* REDUCIDO de 0.85rem a 0.8rem - más pequeño */
 }
 
 .download-cv {
   background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: #FFFFFF; /* Blanco */
   border: none;
-  padding: 10px 20px; /* REDUCIDO de 12px 24px para más compacto */
-  border-radius: 6px;
+  padding: 6px 12px; /* REDUCIDO de 8px 16px - más compacto */
+  border-radius: 5px; /* REDUCIDO de 6px a 5px */
   cursor: pointer;
-  font-size: 0.95rem; /* REDUCIDO de 1rem */
+  font-size: 0.85rem; /* REDUCIDO de 0.9rem - más pequeño */
   font-weight: bold;
-  margin-top: 15px; /* REDUCIDO de 20px */
+  margin-top: 8px; /* REDUCIDO de 10px */
   transition: 0.3s;
 }
 
@@ -182,11 +182,11 @@
   background-color: #004B87; /* Azul Sura */
   color: #FFFFFF; /* Blanco */
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 6px 12px; /* REDUCIDO de 8px 16px - más compacto */
+  border-radius: 5px; /* REDUCIDO de 6px a 5px */
   cursor: pointer;
-  font-size: 1rem;
-  margin-top: 15px; /* REDUCIDO de 20px */
+  font-size: 0.9rem; /* REDUCIDO de 0.95rem - más pequeño */
+  margin-top: 8px; /* REDUCIDO de 10px */
   transition: 0.3s;
 }
 
