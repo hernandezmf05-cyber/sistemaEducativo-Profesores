@@ -1,0 +1,152 @@
+.documents {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  color: var(--text-color);
+}
+
+.documents h2 {
+  color: var(--navbar-bg);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--input-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.form input, .form textarea {
+  padding: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 16px;
+  transition: 0.3s;
+  background-color: var(--input-bg);
+  color: var(--input-color);
+}
+
+.form input[type="file"] {
+  padding: 8px;
+}
+
+.form input:focus, .form textarea:focus {
+  border-color: var(--navbar-bg);
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form button {
+  padding: 12px;
+  background-color: var(--button-bg);
+  color: #FFFFFF; /* Blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.dark .form button {
+  color: #CFB87C; /* Oro */
+}
+
+.form button:hover {
+  background-color: #0056b3;
+}
+
+.document-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.document-list li {
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  color: var(--text-color);
+}
+
+.document-list li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.document-list h3 {
+  color: var(--navbar-bg);
+  margin-top: 0;
+}
+
+.document-list p {
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.document-list button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.document-list button:first-of-type {
+  background-color: var(--button-bg);
+  color: #FFFFFF;
+}
+
+.document-list button:first-of-type:hover {
+  background-color: #BEBEBE;
+}
+
+.document-list button:last-of-type {
+  background-color: var(--button-bg);
+  color: #FFFFFF;
+}
+
+.document-list button:last-of-type:hover {
+  background-color: #BEBEBE;
+}
+
+.view-pdf {
+  background-color: #dc3545;
+  color: white;
+}
+
+.view-pdf:hover {
+  background-color: #c82333;
+}
+
+.readonly-notice {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}

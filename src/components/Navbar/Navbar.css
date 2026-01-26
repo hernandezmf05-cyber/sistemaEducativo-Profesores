@@ -1,0 +1,255 @@
+.navbar {
+    display: flex; /* Layout flexbox horizontal */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Alineación vertical centrada */
+    padding: 16px; /* Espaciado interno */
+    transition: 0.5s; /* Transición suave para cambios */
+    border-bottom: 2px solid var(--border-color); /* Borde inferior */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.navbar.light {
+    background-color: #004B87; /* Azul Sura para modo claro */
+    color: white; /* Texto blanco */
+    --border-color: #00A651; /* Verde Sura */
+}
+
+.navbar.dark {
+    background-color: #666666; /* Gris medio para modo oscuro */
+    color: #CFB87C; /* Oro Colorado */
+    --border-color: #004B87; /* Azul Sura */
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    height: 40px; /* Altura del logo */
+}
+
+.navbar h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.nav-menu {
+  list-style: none; /* Sin viñetas */
+  display: flex; /* Layout flexbox horizontal */
+  gap: 20px; /* Espacio entre elementos */
+  margin: 0; /* Sin margen */
+  padding: 0; /* Sin padding */
+}
+
+.navbar.light .nav-menu li button {
+  color: #FFFFFF; /* Blanco en modo claro */
+  background-color: #D3D3D3; /* Gris ratón */
+}
+
+.navbar.dark .nav-menu li button {
+  color: #CFB87C; /* Oro en modo oscuro */
+  background-color: #D3D3D3; /* Gris ratón */
+}
+
+.nav-menu li button:hover {
+  color: #004B87; /* Azul Sura en hover */
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semi-transparente en hover */
+}
+
+.navbar-right {
+  display: flex; /* Layout flexbox horizontal */
+  align-items: center; /* Alineación vertical centrada */
+  gap: 16px; /* Espacio entre elementos */
+}
+
+.search-box {
+  display: flex; /* Layout flexbox horizontal */
+  align-items: center; /* Alineación vertical centrada */
+}
+
+.search-input {
+  padding: 10px 20px; /* Espaciado interno */
+  border: 1px solid var(--border-color); /* Borde usando variable */
+  border-radius: 50px 0 0 50px; /* Bordes redondeados solo izquierda */
+  outline: none; /* Sin outline */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 250px; /* Ancho fijo */
+  transition: 0.5s; /* Transición suave */
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+  color: inherit; /* Heredar color */
+}
+
+.search-input:focus {
+  border-color: #00A651; /* Verde Sura en foco */
+}
+
+.search-button {
+  padding: 10px 20px; /* Espaciado interno */
+  border: 1px solid var(--border-color); /* Borde usando variable */
+  border-left: none; /* Sin borde izquierdo */
+  border-radius: 0 50px 50px 0; /* Bordes redondeados solo derecha */
+  background-color: #00A651; /* Verde Sura */
+  color: white; /* Texto blanco */
+  cursor: pointer; /* Cursor de puntero */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: 0.5s; /* Transición suave */
+}
+
+.search-button:hover {
+  background-color: #004B87; /* Azul Sura en hover */
+}
+
+.theme-toggle {
+  background: none; /* Sin fondo */
+  border: none; /* Sin borde */
+  font-size: 24px; /* Tamaño grande para icono */
+  cursor: pointer; /* Cursor de puntero */
+  padding: 8px; /* Espaciado interno */
+  border-radius: 50%; /* Forma circular */
+  transition: 0.3s; /* Transición suave */
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semi-transparente en hover */
+}
+
+.search-box {
+  display: flex; /* Layout flexbox horizontal */
+  align-items: center; /* Alineación vertical centrada */
+}
+
+.search-input {
+  padding: 10px 20px; /* Espaciado interno */
+  border: 1px solid var(--input-border, #ced4da); /* Borde usando variable */
+  border-radius: 50px 0 0 50px; /* Bordes redondeados solo izquierda */
+  outline: none; /* Sin outline */
+  font-size: 16px; /* Tamaño de fuente */
+  width: 300px; /* Ancho fijo */
+  transition: 0.5s; /* Transición suave */
+  background-color: var(--input-bg, white); /* Fondo usando variable */
+  color: var(--input-color, #213547); /* Color de texto usando variable */
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Borde azul en foco */
+}
+
+.search-button {
+  padding: 10px 20px; /* Espaciado interno */
+  border: 1px solid var(--input-border, #ced4da); /* Borde usando variable */
+  border-left: none; /* Sin borde izquierdo */
+  border-radius: 0 50px 50px 0; /* Bordes redondeados solo derecha */
+  background-color: var(--button-bg, #007bff); /* Fondo usando variable */
+  color: white; /* Texto blanco */
+  cursor: pointer; /* Cursor de puntero */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: 0.5s; /* Transición suave */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Fondo azul más oscuro en hover */
+}
+
+.login-button {
+  padding: 10px 20px; /* Espaciado interno */
+  border: 1px solid var(--border-color); /* Borde usando variable */
+  border-radius: 50px; /* Bordes completamente redondeados */
+  background-color: #00A651; /* Verde Sura */
+  color: white; /* Texto blanco */
+  cursor: pointer; /* Cursor de puntero */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: 0.5s; /* Transición suave */
+}
+
+.login-button:hover {
+  background-color: #004B87; /* Azul Sura en hover */
+}
+
+.user-info {
+  display: flex; /* Layout flexbox horizontal */
+  align-items: center; /* Alineación vertical centrada */
+  gap: 12px; /* Espacio entre elementos */
+  color: inherit; /* Heredar color */
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+}
+
+.user-name {
+  font-weight: bold; /* Texto en negrita */
+}
+
+.user-type {
+  font-style: italic; /* Texto en cursiva */
+  opacity: 0.8; /* Ligera transparencia */
+}
+
+.logout-button {
+  padding: 8px 16px; /* Espaciado interno más pequeño */
+  border: 1px solid var(--border-color); /* Borde usando variable */
+  border-radius: 20px; /* Bordes redondeados */
+  background-color: #D3D3D3; /* Gris ratón */
+  color: #FFFFFF; /* Blanco */
+  cursor: pointer; /* Cursor de puntero */
+  font-size: 14px; /* Tamaño de fuente */
+  transition: 0.3s; /* Transición suave */
+}
+
+.logout-button:hover {
+  background-color: #BEBEBE; /* Gris ratón más oscuro en hover */
+}
+
+.navbar.dark .logout-button {
+  background-color: #D3D3D3; /* Gris ratón en modo oscuro */
+  color: #CFB87C; /* Oro */
+}
+
+.navbar.dark .logout-button:hover {
+  background-color: #333333; /* Gris oscuro en hover */
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: #007BFF; /* Azul claro */
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.dropbtn:hover {
+  color: #004B87; /* Azul oscuro en hover */
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar.light .dropdown-content {
+  background-color: #FFFFFF; /* Blanco para contraste */
+  color: #004B87; /* Azul Sura */
+}
+
+.navbar.dark .dropdown-content {
+  background-color: #333333; /* Gris oscuro */
+  color: #CFB87C; /* Oro */
+}
+
+.dropdown-content button {
+  color: inherit; /* Hereda del contenedor */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Hover sutil */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

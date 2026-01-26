@@ -1,0 +1,113 @@
+#root {
+  max-width: 1280px; /* Ancho máximo del contenedor principal */
+  margin: 0 auto; /* Centrado horizontal */
+  padding: 2rem; /* Espaciado interno */
+  text-align: center; /* Alineación centrada del texto */
+}
+
+.App {
+  min-height: 100vh; /* Altura mínima de la aplicación completa */
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Fondo gradiente suave */
+  transition: background 0.5s ease; /* Transición suave para cambios de fondo */
+}
+
+.login-button {
+  color: #FFFFFF; /* Blanco para texto en modo claro */
+}
+
+.dark .login-button {
+  color: #CFB87C; /* Oro para texto en modo oscuro */
+}
+
+.dark .App {
+  background: linear-gradient(135deg, #555555 0%, #777777 100%); /* Gradiente gris medio para modo oscuro */
+}
+
+.App-header {
+  display: flex; /* Layout flexbox */
+  flex-direction: column; /* Dirección vertical */
+  align-items: center; /* Alineación centrada */
+  justify-content: center; /* Justificación centrada */
+  min-height: 80vh; /* Altura mínima del header */
+  padding: 2rem; /* Espaciado interno */
+  background: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+  margin: 2rem 0; /* Margen vertical */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque de fondo */
+}
+
+.dark .App-header {
+  background: rgba(33, 37, 41, 0.8); /* Fondo para modo oscuro */
+  color: #fff; /* Color de texto blanco */
+}
+
+.logo {
+  height: 6em; /* Altura del logo */
+  padding: 1.5em; /* Espaciado interno */
+  will-change: filter; /* Optimización para animaciones */
+  transition: filter 300ms; /* Transición del filtro */
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa); /* Efecto de sombra en hover */
+}
+
+.App-header h1 {
+  font-size: 3rem; /* Tamaño de fuente grande */
+  margin: 1rem 0; /* Margen vertical */
+  background: linear-gradient(135deg, #667eea, #764ba2); /* Texto con gradiente */
+  -webkit-background-clip: text; /* Clip del fondo al texto */
+  -webkit-text-fill-color: transparent; /* Color transparente para mostrar gradiente */
+  background-clip: text; /* Compatibilidad */
+  font-weight: 700; /* Peso de fuente bold */
+}
+
+.card {
+  padding: 2em; /* Espaciado interno */
+  background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra */
+  margin: 1rem 0; /* Margen vertical */
+  transition: transform 0.3s ease; /* Transición para hover */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Efecto de elevación en hover */
+}
+
+.dark .card {
+  background: rgba(52, 58, 64, 0.9); /* Fondo para modo oscuro */
+}
+
+.read-the-docs {
+  color: #888; /* Color gris */
+  font-style: italic; /* Estilo cursiva */
+  margin-top: 1rem; /* Margen superior */
+}
+
+button {
+  border-radius: 8px; /* Bordes redondeados */
+  border: 1px solid transparent; /* Borde transparente */
+  padding: 0.6em 1.2em; /* Espaciado interno */
+  font-size: 1em; /* Tamaño de fuente */
+  font-weight: 500; /* Peso de fuente */
+  font-family: inherit; /* Hereda la fuente */
+  background-color: #1a1a1a; /* Color de fondo oscuro */
+  cursor: pointer; /* Cursor de puntero */
+  transition: all 0.25s ease; /* Transición suave */
+}
+button:hover {
+  border-color: #646cff; /* Color de borde en hover */
+  transform: translateY(-2px); /* Elevación en hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra en hover */
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color; /* Outline para foco */
+}
+
+@media (prefers-color-scheme: light) { /* Media query para preferencia de esquema claro */
+  button {
+    background-color: #f9f9f9; /* Fondo claro */
+  }
+}
