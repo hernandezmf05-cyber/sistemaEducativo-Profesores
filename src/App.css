@@ -1,26 +1,25 @@
 #root {
-  max-width: 1280px; /* Ancho máximo del contenedor principal */
-  margin: 0 auto; /* Centrado horizontal */
-  padding: 2rem; /* Espaciado interno */
-  text-align: center; /* Alineación centrada del texto */
+  max-width: 100%; /* CAMBIADO: Ancho completo en lugar de limitado */
+  margin: 0; /* CAMBIADO: Sin margen para aprovechar toda la pantalla */
+  padding: 0; /* CAMBIADO: Sin padding extra */
 }
 
 .App {
   min-height: 100vh; /* Altura mínima de la aplicación completa */
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Fondo gradiente suave */
+  background: linear-gradient(135deg, #f5f7fa 0%, #e3e9f0 100%); /* CORREGIDO: Gradiente más suave y uniforme */
   transition: background 0.5s ease; /* Transición suave para cambios de fondo */
 }
 
 .login-button {
-  color: #FFFFFF; /* Blanco para texto en modo claro */
+  color: #FFFFFF; /* Blanco para texto del botón login */
 }
 
 .dark .login-button {
-  color: #CFB87C; /* Oro para texto en modo oscuro */
+  color: #FFFFFF; /* Blanco en modo oscuro */
 }
 
 .dark .App {
-  background: linear-gradient(135deg, #555555 0%, #777777 100%); /* Gradiente gris medio para modo oscuro */
+  background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); /* CORREGIDO: Gradiente oscuro más limpio y uniforme */
 }
 
 .App-header {
@@ -28,18 +27,21 @@
   flex-direction: column; /* Dirección vertical */
   align-items: center; /* Alineación centrada */
   justify-content: center; /* Justificación centrada */
-  min-height: 80vh; /* Altura mínima del header */
+  min-height: calc(100vh - 100px); /* CORREGIDO: Altura que respeta navbar */
   padding: 2rem; /* Espaciado interno */
-  background: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+  background: rgba(255, 255, 255, 0.85); /* AUMENTADO: Más opaco para evitar transparencias confusas */
   border-radius: 20px; /* Bordes redondeados */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
-  margin: 2rem 0; /* Margen vertical */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque de fondo */
+  box-shadow: 0 10px 40px rgba(0, 75, 135, 0.12); /* CORREGIDO: Sombra azul Sura más sutil */
+  margin: 2rem auto; /* CAMBIADO: Centrado automático */
+  max-width: 1200px; /* AGREGADO: Ancho máximo para contenido */
+  /* ELIMINADO: backdrop-filter - causaba problemas de capas */
 }
 
 .dark .App-header {
-  background: rgba(33, 37, 41, 0.8); /* Fondo para modo oscuro */
-  color: #fff; /* Color de texto blanco */
+  background: rgba(26, 26, 46, 0.92); /* AUMENTADO: Más opaco */
+  color: #FFFFFF; /* Texto blanco para mejor contraste */
+  border: 1px solid rgba(0, 102, 204, 0.3); /* CORREGIDO: Borde azul sutil */
+  box-shadow: 0 10px 40px rgba(0, 102, 204, 0.15); /* AGREGADO: Sombra azul en modo oscuro */
 }
 
 .logo {
@@ -48,41 +50,72 @@
   will-change: filter; /* Optimización para animaciones */
   transition: filter 300ms; /* Transición del filtro */
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa); /* Efecto de sombra en hover */
+  filter: drop-shadow(0 0 2em #0066ccaa); /* CORREGIDO: Sombra azul Sura */
 }
 
 .App-header h1 {
-  font-size: 3rem; /* Tamaño de fuente grande */
+  font-size: 2.5rem; /* REDUCIDO: Más equilibrado */
   margin: 1rem 0; /* Margen vertical */
-  background: linear-gradient(135deg, #667eea, #764ba2); /* Texto con gradiente */
+  background: linear-gradient(135deg, #004B87, #0066CC); /* CORREGIDO: Gradiente azul Sura */
   -webkit-background-clip: text; /* Clip del fondo al texto */
   -webkit-text-fill-color: transparent; /* Color transparente para mostrar gradiente */
   background-clip: text; /* Compatibilidad */
   font-weight: 700; /* Peso de fuente bold */
 }
 
+.dark .App-header h1 {
+  background: linear-gradient(135deg, #0066CC, #00AAFF); /* CORREGIDO: Gradiente azul más brillante para modo oscuro */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.App-header p {
+  color: #333333; /* AGREGADO: Color gris oscuro para texto en modo claro */
+  font-size: 1.1rem; /* AGREGADO: Tamaño legible */
+  line-height: 1.6; /* AGREGADO: Altura de línea cómoda */
+  max-width: 600px; /* AGREGADO: Ancho máximo para legibilidad */
+}
+
+.dark .App-header p {
+  color: #E0E0E0; /* Color gris claro para mejor legibilidad en modo oscuro */
+}
+
 .card {
   padding: 2em; /* Espaciado interno */
-  background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  background: rgba(255, 255, 255, 0.95); /* AUMENTADO: Más opaco */
   border-radius: 15px; /* Bordes redondeados */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra */
-  margin: 1rem 0; /* Margen vertical */
-  transition: transform 0.3s ease; /* Transición para hover */
+  box-shadow: 0 5px 20px rgba(0, 75, 135, 0.1); /* CORREGIDO: Sombra azul */
+  margin: 1rem auto; /* CAMBIADO: Centrado automático */
+  max-width: 800px; /* AGREGADO: Ancho máximo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* AGREGADO: Transición para sombra */
 }
 
 .card:hover {
   transform: translateY(-5px); /* Efecto de elevación en hover */
+  box-shadow: 0 10px 30px rgba(0, 75, 135, 0.15); /* AGREGADO: Sombra más pronunciada en hover */
 }
 
 .dark .card {
-  background: rgba(52, 58, 64, 0.9); /* Fondo para modo oscuro */
+  background: rgba(26, 26, 46, 0.95); /* Fondo azul muy oscuro */
+  border: 1px solid rgba(0, 102, 204, 0.3); /* Borde azul */
+  color: #FFFFFF; /* Texto blanco */
+}
+
+.dark .card:hover {
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.2); /* AGREGADO: Sombra azul en hover modo oscuro */
 }
 
 .read-the-docs {
   color: #888; /* Color gris */
   font-style: italic; /* Estilo cursiva */
   margin-top: 1rem; /* Margen superior */
+}
+
+.dark .read-the-docs {
+  color: #B0B0B0; /* Gris más claro en modo oscuro */
 }
 
 button {
@@ -92,22 +125,65 @@ button {
   font-size: 1em; /* Tamaño de fuente */
   font-weight: 500; /* Peso de fuente */
   font-family: inherit; /* Hereda la fuente */
-  background-color: #1a1a1a; /* Color de fondo oscuro */
+  background-color: #0066CC; /* CORREGIDO: Azul Sura */
+  color: #FFFFFF; /* AGREGADO: Texto blanco */
   cursor: pointer; /* Cursor de puntero */
   transition: all 0.25s ease; /* Transición suave */
 }
+
 button:hover {
-  border-color: #646cff; /* Color de borde en hover */
+  background-color: #004B87; /* CORREGIDO: Azul más oscuro en hover */
+  border-color: #004B87; /* CORREGIDO: Borde azul */
   transform: translateY(-2px); /* Elevación en hover */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Sombra en hover */
+  box-shadow: 0 5px 15px rgba(0, 75, 135, 0.3); /* CORREGIDO: Sombra azul */
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color; /* Outline para foco */
+  outline: 2px solid #0066CC; /* CORREGIDO: Outline azul para accesibilidad */
+  outline-offset: 2px; /* AGREGADO: Espacio del outline */
+}
+
+.dark button {
+  background-color: #0066CC; /* AGREGADO: Azul para modo oscuro */
+  color: #FFFFFF; /* AGREGADO: Texto blanco */
+}
+
+.dark button:hover {
+  background-color: #004B87; /* AGREGADO: Azul oscuro en hover */
+}
+
+/* AGREGADO: Asegurar que componentes hijos no tengan márgenes conflictivos */
+.App > * {
+  max-width: 100%; /* Ancho máximo completo */
 }
 
 @media (prefers-color-scheme: light) { /* Media query para preferencia de esquema claro */
   button {
-    background-color: #f9f9f9; /* Fondo claro */
+    background-color: #0066CC; /* CORREGIDO: Azul consistente */
+    color: #FFFFFF; /* AGREGADO: Texto blanco */
+  }
+}
+
+/* AGREGADO: Responsividad para móviles */
+@media (max-width: 768px) {
+  .App-header {
+    min-height: calc(100vh - 80px); /* Altura ajustada para móviles */
+    padding: 1.5rem; /* Menos padding */
+    margin: 1rem; /* Menos margen */
+    border-radius: 15px; /* Bordes menos pronunciados */
+  }
+  
+  .App-header h1 {
+    font-size: 2rem; /* Título más pequeño */
+  }
+  
+  .App-header p {
+    font-size: 1rem; /* Texto más pequeño */
+  }
+  
+  .card {
+    padding: 1.5em; /* Menos padding */
+    margin: 1rem; /* Margen ajustado */
   }
 }

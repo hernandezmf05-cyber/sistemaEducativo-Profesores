@@ -15,8 +15,8 @@ const usersDatabase = [
 ];
 
 function App() {
-  // Estado para el contador del botón
-  const [count, setCount] = useState(0);
+  // ELIMINADO: const [count, setCount] = useState(0); - No se usaba
+  
   // Estado para la vista actual (home, documents-readonly, documents-crud, login, profesores-list, etc.)
   const [currentView, setCurrentView] = useState('home');
   // Estado para el modo oscuro
@@ -33,7 +33,7 @@ function App() {
     { id: 3, nombre: 'Carlos López', especialidad: 'Química', foto: 'https://via.placeholder.com/150', cursosAsignados: [], descripcion: 'Profesor de química orgánica.', estado: 'activo', hojaDeVida: null, fotoFile: null },
   ]);
   // Estado para la lista de cursos
-  const [cursos, setCursos] = useState([
+  const [cursos] = useState([ // CAMBIADO: Removido setCursos ya que no se usa
     { id: 1, nombre: 'Álgebra Lineal', descripcion: 'Curso básico de álgebra.' },
     { id: 2, nombre: 'Cálculo Diferencial', descripcion: 'Introducción al cálculo.' },
     { id: 3, nombre: 'Física Mecánica', descripcion: 'Principios de la mecánica.' },

@@ -11,6 +11,9 @@ function Login({ setCurrentView, onLoginSuccess, usersDatabase }) { // Component
     password: '',
     userType: 'profesor_normal' // Valor por defecto para tipo de profesor
   });
+  
+  // AGREGADO: Estado local para almacenar usuarios registrados
+  const [registeredUsers, setRegisteredUsers] = useState([...usersDatabase]);
 
   // Función para manejar cambios en los inputs
   const handleInputChange = (e) => {
@@ -22,8 +25,8 @@ function Login({ setCurrentView, onLoginSuccess, usersDatabase }) { // Component
   const handleSubmit = (e) => {
     e.preventDefault(); // Previene recarga de página
     if (formType === 'login') {
-      // Validar credenciales contra la base de datos
-      const user = usersDatabase.find(u => u.email === formData.email && u.password === formData.password);
+      // MODIFICADO: Validar credenciales contra usuarios registrados (no solo la base original)
+      const user = registeredUsers.find(u => u.email === formData.email && u.password === formData.password);
       if (user) {
         console.log('Login exitoso:', user);
         onLoginSuccess(user); // Llamar callback con usuario encontrado
@@ -31,15 +34,40 @@ function Login({ setCurrentView, onLoginSuccess, usersDatabase }) { // Component
         alert('Credenciales incorrectas. Inténtalo de nuevo.');
       }
     } else if (formType === 'register') {
-      console.log('Register:', formData); // Log de datos de registro
+      // MODIFICADO: Guardar usuario nuevo en el estado
+      const userExists = registeredUsers.find(u => u.email === formData.email);
+      if (userExists) {
+        alert('El correo ya está registrado. Intenta con otro.');
+        return;
+      }
+      
+      // Crear nuevo usuario
+      const newUser = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        userType: formData.userType
+      };
+      
+      // Agregar nuevo usuario a la lista
+      setRegisteredUsers([...registeredUsers, newUser]);
+      
+      console.log('Register exitoso:', newUser); // Log de datos de registro
       alert('Registro exitoso. Ahora puedes iniciar sesión.');
+      
+      // Limpiar formulario y cambiar a login
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        userType: 'profesor_normal'
+      });
       setFormType('login'); // Cambiar a formulario de login
     } else if (formType === 'unsubscribe') {
       console.log('Unsubscribe:', formData.email); // Log de email para baja
       alert('Solicitud de baja procesada.');
       setCurrentView('home'); // Volver al inicio
     }
-    // Aquí se implementaría la lógica real de autenticación/registro/baja
   };
 
   return (
@@ -102,20 +130,6 @@ function Login({ setCurrentView, onLoginSuccess, usersDatabase }) { // Component
                 id="password"
                 name="password"
                 value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          )}
-          {/* Campo solo para darse de baja */}
-          {formType === 'unsubscribe' && (
-            <div className="form-group">
-              <label htmlFor="email">Correo Electrónico</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
                 onChange={handleInputChange}
                 required
               />

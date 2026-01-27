@@ -4,16 +4,27 @@
   min-height: 100vh;
 }
 
+/* AGREGADO: Estilos para modo oscuro */
+.dark .profesores-container {
+  background-color: transparent; /* Fondo transparente para mostrar el gradiente del App */
+}
+
 .profesores-container h2 {
   color: #004B87; /* Azul Sura */
   text-align: center;
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .profesores-container h2 {
+  color: #FFFFFF; /* Blanco para mejor contraste */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
 }
 
 .search-bar {
   width: 100%;
   padding: 10px;
   margin: 20px 0;
-  border: 2px solid #00A651; /* Verde Sura */
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   border-radius: 5px;
   font-size: 16px;
   background-color: #FFFFFF;
@@ -29,7 +40,7 @@
   width: 100%;
   padding: 10px;
   margin: 20px 0;
-  border: 2px solid #00A651;
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   border-radius: 5px;
   font-size: 16px;
   background-color: #FFFFFF;
@@ -56,6 +67,13 @@
   text-align: center;
 }
 
+/* AGREGADO: Estilos para modo oscuro */
+.dark .profesor-card {
+  background-color: #1a1a2e; /* Azul muy oscuro */
+  border: 1px solid #0066CC; /* Borde azul */
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2); /* Sombra azul */
+}
+
 .profesor-foto {
   width: 100px;
   height: 100px;
@@ -69,9 +87,19 @@
   margin: 10px 0;
 }
 
+/* AGREGADO: Color para modo oscuro */
+.dark .profesor-card h3 {
+  color: #FFFFFF; /* Blanco */
+}
+
 .profesor-card p {
   color: #004B87;
   margin: 5px 0;
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .profesor-card p {
+  color: #E0E0E0; /* Gris claro */
 }
 
 .profesor-card button {
@@ -80,7 +108,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background-color: #00A651; /* Verde Sura */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: white;
 }
 
@@ -91,59 +119,90 @@
 .profesor-profile {
   background-color: #FFFFFF; /* Blanco para fondo claro */
   color: #004B87; /* Azul Sura para texto */
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 30px;
-  max-width: 800px;
-  margin: 0 auto;
+  border-radius: 10px; /* REDUCIDO de 12px a 10px */
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1); /* REDUCIDO sombra */
+  padding: 15px; /* REDUCIDO de 20px a 15px */
+  max-width: 500px; /* REDUCIDO de 650px a 500px - mucho más compacto */
+  margin: 15px auto; /* REDUCIDO de 20px a 15px */
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Arial', sans-serif;
-  border: 2px solid #00A651; /* Borde verde Sura */
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
+}
+
+/* AGREGADO: Estilos para perfil en modo oscuro */
+.dark .profesor-profile {
+  background-color: #1a1a2e; /* Azul muy oscuro */
+  color: #FFFFFF; /* Blanco */
+  border: 2px solid #0066CC; /* Borde azul */
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3); /* Sombra azul */
 }
 
 .profesor-foto-large {
-  width: 250px;
-  height: 250px;
+  width: 120px; /* REDUCIDO de 150px a 120px - más pequeño */
+  height: 120px; /* REDUCIDO de 150px a 120px */
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
-  border: 4px solid #004B87; /* Borde azul Sura */
+  margin-bottom: 8px; /* REDUCIDO de 10px a 8px */
+  border: 2px solid #004B87; /* REDUCIDO de 3px a 2px */
 }
 
 .profesor-profile h3 {
   color: #004B87; /* Azul Sura */
-  margin-bottom: 15px;
-  font-size: 2rem;
+  margin-bottom: 10px; /* REDUCIDO de 12px a 10px */
+  font-size: 1.4rem; /* REDUCIDO de 1.6rem a 1.4rem - más pequeño */
   text-align: center;
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .profesor-profile h3 {
+  color: #FFFFFF; /* Blanco */
 }
 
 .profesor-info {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 10px; /* REDUCIDO de 12px a 10px */
+  margin-bottom: 10px; /* REDUCIDO de 12px a 10px */
 }
 
 .info-section {
   background-color: #F0F8FF; /* Azul muy claro */
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #00A651; /* Borde verde Sura */
+  padding: 8px; /* REDUCIDO de 10px a 8px - más compacto */
+  border-radius: 5px; /* REDUCIDO de 6px a 5px */
+  border-left: 2px solid #0066CC; /* REDUCIDO de 3px a 2px - Azul medio */
+}
+
+/* AGREGADO: Estilos para modo oscuro */
+.dark .info-section {
+  background-color: #0f0f23; /* Azul muy muy oscuro */
+  border-left: 2px solid #0066CC; /* Borde azul */
 }
 
 .info-section h4 {
   color: #004B87; /* Azul Sura */
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 5px; /* REDUCIDO de 6px a 5px */
+  font-size: 0.95rem; /* REDUCIDO de 1rem a 0.95rem - más pequeño */
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .info-section h4 {
+  color: #0066CC; /* Azul medio */
 }
 
 .info-section p, .info-section ul {
   color: #333333; /* Gris oscuro para legibilidad */
-  margin: 5px 0;
-  line-height: 1.6;
+  margin: 3px 0; /* REDUCIDO de 4px a 3px */
+  line-height: 1.3; /* REDUCIDO de 1.4 a 1.3 - más compacto */
+  font-size: 0.85rem; /* REDUCIDO de 0.9rem a 0.85rem - más pequeño */
+}
+
+/* AGREGADO: Color para modo oscuro */
+.dark .info-section p,
+.dark .info-section ul {
+  color: #E0E0E0; /* Gris claro */
 }
 
 .info-section ul {
@@ -153,38 +212,46 @@
 
 .info-section li {
   background-color: #E6F3FF; /* Azul aún más claro */
-  margin: 5px 0;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #00A651;
+  margin: 3px 0; /* REDUCIDO de 4px a 3px */
+  padding: 4px; /* REDUCIDO de 5px a 4px - más compacto */
+  border-radius: 3px; /* REDUCIDO de 4px a 3px */
+  border: 1px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
+  font-size: 0.8rem; /* REDUCIDO de 0.85rem a 0.8rem - más pequeño */
+}
+
+/* AGREGADO: Estilos para modo oscuro */
+.dark .info-section li {
+  background-color: #16213e; /* Azul oscuro medio */
+  border: 1px solid #0066CC; /* Borde azul */
+  color: #E0E0E0; /* Gris claro */
 }
 
 .download-cv {
-  background-color: #00A651; /* Verde Sura */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   color: #FFFFFF; /* Blanco */
   border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
+  padding: 6px 12px; /* REDUCIDO de 8px 16px - más compacto */
+  border-radius: 5px; /* REDUCIDO de 6px a 5px */
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.85rem; /* REDUCIDO de 0.9rem - más pequeño */
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 8px; /* REDUCIDO de 10px */
   transition: 0.3s;
 }
 
 .download-cv:hover {
-  background-color: #008F4C; /* Verde más oscuro */
+  background-color: #004B87; /* Azul Sura - CAMBIADO de verde oscuro */
 }
 
 .back-button {
   background-color: #004B87; /* Azul Sura */
   color: #FFFFFF; /* Blanco */
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 6px 12px; /* REDUCIDO de 8px 16px - más compacto */
+  border-radius: 5px; /* REDUCIDO de 6px a 5px */
   cursor: pointer;
-  font-size: 1rem;
-  margin-top: 20px;
+  font-size: 0.9rem; /* REDUCIDO de 0.95rem - más pequeño */
+  margin-top: 8px; /* REDUCIDO de 10px */
   transition: 0.3s;
 }
 
@@ -220,18 +287,41 @@ form {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* AGREGADO: Estilos para formularios en modo oscuro */
+.dark form {
+  background-color: #1a1a2e; /* Azul muy oscuro */
+  border: 1px solid #0066CC; /* Borde azul */
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2); /* Sombra azul */
+}
+
 form input, form textarea, form select {
   margin: 10px 0;
   padding: 10px;
-  border: 2px solid #00A651; /* Verde Sura */
+  border: 2px solid #0066CC; /* Azul medio - CAMBIADO de verde a azul */
   border-radius: 4px;
   background-color: #FFFFFF; /* Blanco para alto contraste */
   color: #004B87; /* Azul Sura oscuro */
 }
 
+/* AGREGADO: Estilos para inputs en modo oscuro */
+.dark form input,
+.dark form textarea,
+.dark form select {
+  background-color: #0f0f23; /* Azul muy muy oscuro */
+  border: 2px solid #0066CC; /* Borde azul */
+  color: #FFFFFF; /* Texto blanco */
+}
+
+.dark form input:focus,
+.dark form textarea:focus,
+.dark form select:focus {
+  background-color: #16213e; /* Azul oscuro medio al hacer focus */
+  border-color: #0066CC; /* Borde azul */
+}
+
 form button {
   padding: 10px;
-  background-color: #D3D3D3; /* Gris ratón */
+  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
   color: #FFFFFF; /* Blanco */
   border: none;
   border-radius: 4px;
@@ -241,21 +331,17 @@ form button {
 }
 
 form button:hover {
-  background-color: #BEBEBE; /* Gris ratón más oscuro */
+  background-color: #004B87; /* Azul Sura - CAMBIADO */
+  color: white;
 }
 
 .dark form button {
-  background-color: #D3D3D3; /* Gris ratón en modo oscuro */
-  color: #CFB87C; /* Oro */
+  background-color: #0066CC; /* Azul medio en modo oscuro - CAMBIADO */
+  color: #FFFFFF; /* Blanco - CAMBIADO para mejor contraste */
 }
 
 .dark form button:hover {
-  background-color: #333333; /* Gris oscuro */
-}
-
-form button:hover {
-  background-color: #004B87;
-  color: white;
+  background-color: #003D6B; /* Azul oscuro - CAMBIADO */
 }
 
 .cursos-list {
@@ -278,4 +364,30 @@ form button:hover {
 
 .cursos-list input {
   margin-right: 10px;
+}
+
+/* AGREGADO: Estilos para vista previa de foto en formularios */
+.foto-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #F0F8FF;
+  border-radius: 8px;
+  border: 2px solid #0066CC;
+}
+
+.foto-preview p {
+  margin: 0 0 10px 0;
+  color: #004B87;
+  font-weight: bold;
+}
+
+.preview-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #004B87;
 }
