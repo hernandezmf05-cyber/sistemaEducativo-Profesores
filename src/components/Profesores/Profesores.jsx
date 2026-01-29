@@ -208,72 +208,89 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
     const profCursos = cursos.filter(c => (selectedProf.cursosAsignados || []).includes(c.id));
     return (
       <div className="profesores-container">
-        <h2>Perfil del Profesor</h2>
         <div className="profesor-profile">
-          <img 
-            src={selectedProf.foto || defaultAvatar} 
-            alt={selectedProf.nombreCompleto || selectedProf.nombre} 
-            className="profesor-foto-large" 
-            onError={(e) => { e.target.src = defaultAvatar; }}
-          />
-          <h3>{selectedProf.nombreCompleto || selectedProf.nombre}</h3>
-          
-          {/* Información Personal */}
-          <div className="info-section">
-            <h4>Información Personal</h4>
-            <p><strong>Documento:</strong> {selectedProf.numeroDocumento || 'No especificado'}</p>
-            <p><strong>Correo:</strong> {selectedProf.correoElectronico || 'No especificado'}</p>
-            <p><strong>Celular:</strong> {selectedProf.celular || 'No especificado'}</p>
-            <p><strong>Estado:</strong> {selectedProf.estado || (selectedProf.vigencia ? 'Activo' : 'Inactivo')}</p>
-          </div>
-
-          {/* Información Académica */}
-          <div className="info-section">
-            <h4>Información Académica</h4>
-            <p><strong>Nivel Académico:</strong> {selectedProf.nivelAcademico || 'No especificado'}</p>
-            <p><strong>Áreas Asignadas:</strong> {selectedProf.areasAsignadas || selectedProf.especialidad || 'No especificado'}</p>
-            <p><strong>Años de Experiencia:</strong> {selectedProf.anosExperiencia || 0}</p>
-          </div>
-
-          {/* Perfil Profesional */}
-          {(selectedProf.perfilProfesional || selectedProf.descripcion) && (
-            <div className="info-section">
-              <h4>Perfil Profesional</h4>
-              <p>{selectedProf.perfilProfesional || selectedProf.descripcion}</p>
+          {/* HEADER CON FOTO Y NOMBRE */}
+          <div className="profile-header">
+            <div className="profile-header-left">
+              <img 
+                src={selectedProf.foto || defaultAvatar} 
+                alt={selectedProf.nombreCompleto || selectedProf.nombre} 
+                className="profesor-foto-large" 
+                onError={(e) => { e.target.src = defaultAvatar; }}
+              />
             </div>
-          )}
-
-          {/* Información Laboral */}
-          <div className="info-section">
-            <h4>Información Laboral</h4>
-            <p><strong>Tipo de Contrato:</strong> {selectedProf.tipoContrato || 'No especificado'}</p>
+            <div className="profile-header-right">
+              <h3>{selectedProf.nombreCompleto || selectedProf.nombre}</h3>
+              <p className="profile-subtitle">{selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor'}</p>
+              <span className="profile-status-badge">
+                {selectedProf.estado || (selectedProf.vigencia ? '✓ Activo' : '○ Inactivo')}
+              </span>
+            </div>
           </div>
 
-          {/* Cursos Asignados */}
-          <div className="info-section">
-            <h4>Cursos que Dicta</h4>
-            <ul>
-              {profCursos.length > 0 ? profCursos.map(c => <li key={c.id}>{c.nombre} - {c.descripcion}</li>) : <li>No tiene cursos asignados</li>}
-            </ul>
+          {/* CONTENIDO EN GRID DE 2 COLUMNAS */}
+          <div className="profile-content">
+            <div className="profesor-info">
+              {/* Información Personal */}
+              <div className="info-section">
+                <h4>Información Personal</h4>
+                <p><strong>Documento:</strong> {selectedProf.numeroDocumento || 'No especificado'}</p>
+                <p><strong>Correo:</strong> {selectedProf.correoElectronico || 'No especificado'}</p>
+                <p><strong>Celular:</strong> {selectedProf.celular || 'No especificado'}</p>
+              </div>
+
+              {/* Información Académica */}
+              <div className="info-section">
+                <h4>Información Académica</h4>
+                <p><strong>Nivel:</strong> {selectedProf.nivelAcademico || 'No especificado'}</p>
+                <p><strong>Áreas:</strong> {selectedProf.areasAsignadas || selectedProf.especialidad || 'No especificado'}</p>
+                <p><strong>Experiencia:</strong> {selectedProf.anosExperiencia || 0} años</p>
+              </div>
+
+              {/* Información Laboral */}
+              <div className="info-section">
+                <h4>Información Laboral</h4>
+                <p><strong>Contrato:</strong> {selectedProf.tipoContrato || 'No especificado'}</p>
+              </div>
+
+              {/* Cursos Asignados */}
+              <div className="info-section">
+                <h4>Cursos que Dicta</h4>
+                <ul>
+                  {profCursos.length > 0 ? profCursos.map(c => <li key={c.id}>{c.nombre}</li>) : <li>No tiene cursos asignados</li>}
+                </ul>
+              </div>
+
+              {/* Perfil Profesional - ANCHO COMPLETO */}
+              {(selectedProf.perfilProfesional || selectedProf.descripcion) && (
+                <div className="info-section full-width">
+                  <h4>Perfil Profesional</h4>
+                  <p>{selectedProf.perfilProfesional || selectedProf.descripcion}</p>
+                </div>
+              )}
+
+              {/* Documentos - SI HAY CV */}
+              {(selectedProf.hojaDeVidaFile || selectedProf.hojaDeVida) && (
+                <div className="info-section">
+                  <h4>Documentos</h4>
+                  {selectedProf.hojaDeVidaFile ? (
+                    <a href={URL.createObjectURL(selectedProf.hojaDeVidaFile)} download={`${selectedProf.nombreCompleto || selectedProf.nombre}_CV.${selectedProf.hojaDeVidaFile.name.split('.').pop()}`}>
+                      <button className="download-cv">Descargar CV</button>
+                    </a>
+                  ) : (
+                    <a href={selectedProf.hojaDeVida} target="_blank" rel="noopener noreferrer">
+                      <button className="download-cv">Ver CV</button>
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Documentos */}
-          <div className="info-section">
-            <h4>Documentos</h4>
-            {selectedProf.hojaDeVidaFile ? (
-              <a href={URL.createObjectURL(selectedProf.hojaDeVidaFile)} download={`${selectedProf.nombreCompleto || selectedProf.nombre}_CV.${selectedProf.hojaDeVidaFile.name.split('.').pop()}`}>
-                <button className="download-cv">Descargar Hoja de Vida</button>
-              </a>
-            ) : selectedProf.hojaDeVida ? (
-              <a href={selectedProf.hojaDeVida} target="_blank" rel="noopener noreferrer">
-                <button className="download-cv">Ver Hoja de Vida</button>
-              </a>
-            ) : (
-              <p>No hay hoja de vida disponible</p>
-            )}
+          {/* FOOTER CON BOTONES */}
+          <div className="profile-footer">
+            <button className="back-button" onClick={() => setCurrentView('profesores-list')}>Volver</button>
           </div>
-
-          <button className="back-button" onClick={() => setCurrentView('profesores-list')}>Volver a la Lista</button>
         </div>
       </div>
     );
