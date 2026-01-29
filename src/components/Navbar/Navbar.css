@@ -1,224 +1,181 @@
+
 .navbar {
-    display: flex; /* Layout flexbox horizontal */
-    justify-content: space-between; /* Espacio entre elementos */
-    align-items: center; /* Alineación vertical centrada */
-    padding: 16px; /* Espaciado interno */
-    transition: 0.5s; /* Transición suave para cambios */
-    border-bottom: 2px solid var(--border-color); /* Borde inferior */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px; /* Más padding horizontal */
+  margin: 15px 20px; /* NUEVO: Separación de los bordes */
+  border-radius: 16px; /* NUEVO: Bordes redondeados */
+  backdrop-filter: blur(20px); /* NUEVO: Efecto glassmorphism */
+  -webkit-backdrop-filter: blur(20px); /* Safari */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Borde sutil */
+  transition: all 0.3s ease;
+  position: sticky; /* NUEVO: Se queda fijo al hacer scroll */
+  top: 10px; /* NUEVO: Espacio desde arriba */
+  z-index: 1000; /* NUEVO: Por encima de otros elementos */
 }
 
+/* MODO CLARO - Fondo semi-transparente */
 .navbar.light {
-    background-color: #004B87; /* Azul Sura para modo claro */
-    color: white; /* Texto blanco */
-    --border-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
+  background: rgba(255, 255, 255, 0.85); /* Fondo blanco semi-transparente */
+  color: #004B87; /* Azul Sura */
+  --border-color: #E0E0E0;
+  border: 1px solid rgba(0, 102, 204, 0.15);
 }
 
+/* MODO OSCURO - Fondo oscuro semi-transparente */
 .navbar.dark {
-    background-color: #1a1a2e; /* CAMBIADO: Azul muy oscuro en lugar de gris */
-    color: #FFFFFF; /* CAMBIADO: Blanco en lugar de oro para mejor contraste */
-    --border-color: #0066CC; /* Azul medio */
+  background: rgba(26, 26, 46, 0.75); /* Fondo oscuro semi-transparente */
+  color: #FFFFFF;
+  --border-color: rgba(0, 102, 204, 0.3);
+  border: 1px solid rgba(0, 102, 204, 0.2);
 }
+
+/* ============================================
+   LOGO Y TÍTULO
+   ============================================ */
 
 .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .logo {
-    height: 40px; /* Altura del logo */
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05); /* Efecto hover sutil */
 }
 
 .navbar h2 {
-    margin: 0;
-    font-size: 1.2rem;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
+/* ============================================
+   MENÚ DE NAVEGACIÓN - ESTILO MINIMALISTA
+   ============================================ */
+
 .nav-menu {
-  list-style: none; /* Sin viñetas */
-  display: flex; /* Layout flexbox horizontal */
-  gap: 20px; /* Espacio entre elementos */
-  margin: 0; /* Sin margen */
-  padding: 0; /* Sin padding */
+  list-style: none;
+  display: flex;
+  gap: 8px; /* Menos gap, más compacto */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li button {
+  background: none; /* NUEVO: Sin fondo por defecto */
+  border: none;
+  color: inherit;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .navbar.light .nav-menu li button {
-  color: #FFFFFF; /* Blanco en modo claro */
-  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
+  color: #004B87;
 }
 
 .navbar.dark .nav-menu li button {
-  color: #FFFFFF; /* CAMBIADO: Blanco en modo oscuro para mejor contraste */
-  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
+  color: #FFFFFF;
 }
 
+/* Hover - Fondo sutil */
 .nav-menu li button:hover {
-  color: #FFFFFF; /* Blanco en hover - CAMBIADO */
-  background-color: #003D6B; /* Azul más oscuro en hover - CAMBIADO */
+  background: rgba(0, 102, 204, 0.1); /* NUEVO: Fondo muy sutil en hover */
+  transform: translateY(-1px);
 }
 
-.navbar-right {
-  display: flex; /* Layout flexbox horizontal */
-  align-items: center; /* Alineación vertical centrada */
-  gap: 16px; /* Espacio entre elementos */
+.navbar.dark .nav-menu li button:hover {
+  background: rgba(0, 102, 204, 0.2);
 }
 
-.search-box {
-  display: flex; /* Layout flexbox horizontal */
-  align-items: center; /* Alineación vertical centrada */
-}
+/* ============================================
+   DROPDOWN MODERNO
+   ============================================ */
 
-.search-input {
-  padding: 10px 20px; /* Espaciado interno */
-  border: 1px solid var(--border-color); /* Borde usando variable */
-  border-radius: 50px 0 0 50px; /* Bordes redondeados solo izquierda */
-  outline: none; /* Sin outline */
-  font-size: 16px; /* Tamaño de fuente */
-  width: 250px; /* Ancho fijo */
-  transition: 0.5s; /* Transición suave */
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente - AJUSTADO para mejor visibilidad */
-  color: #213547; /* Color de texto oscuro para legibilidad - AGREGADO */
-}
-
-.search-input:focus {
-  border-color: #0066CC; /* Azul medio en foco - CAMBIADO de verde a azul */
-}
-
-.search-button {
-  padding: 10px 20px; /* Espaciado interno */
-  border: 1px solid var(--border-color); /* Borde usando variable */
-  border-left: none; /* Sin borde izquierdo */
-  border-radius: 0 50px 50px 0; /* Bordes redondeados solo derecha */
-  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
-  color: white; /* Texto blanco */
-  cursor: pointer; /* Cursor de puntero */
-  font-size: 16px; /* Tamaño de fuente */
-  transition: 0.5s; /* Transición suave */
-}
-
-.search-button:hover {
-  background-color: #004B87; /* Azul Sura en hover */
-}
-
-.theme-toggle {
-  background: none; /* Sin fondo */
-  border: none; /* Sin borde */
-  font-size: 24px; /* Tamaño grande para icono */
-  cursor: pointer; /* Cursor de puntero */
-  padding: 8px; /* Espaciado interno */
-  border-radius: 50%; /* Forma circular */
-  transition: 0.3s; /* Transición suave */
-}
-
-.theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco semi-transparente en hover */
-}
-
-.login-button {
-  padding: 10px 20px; /* Espaciado interno */
-  border: 1px solid var(--border-color); /* Borde usando variable */
-  border-radius: 50px; /* Bordes completamente redondeados */
-  background-color: #0066CC; /* Azul medio - CAMBIADO de verde a azul */
-  color: white; /* Texto blanco */
-  cursor: pointer; /* Cursor de puntero */
-  font-size: 16px; /* Tamaño de fuente */
-  transition: 0.5s; /* Transición suave */
-}
-
-.login-button:hover {
-  background-color: #004B87; /* Azul Sura en hover */
-}
-
-.user-info {
-  display: flex; /* Layout flexbox horizontal */
-  align-items: center; /* Alineación vertical centrada */
-  gap: 12px; /* Espacio entre elementos */
-  color: inherit; /* Heredar color */
-  font-size: 14px; /* Tamaño de fuente más pequeño */
-}
-
-.user-name {
-  font-weight: bold; /* Texto en negrita */
-}
-
-.user-type {
-  font-style: italic; /* Texto en cursiva */
-  opacity: 0.8; /* Ligera transparencia */
-}
-
-.logout-button {
-  padding: 8px 16px; /* Espaciado interno más pequeño */
-  border: 1px solid var(--border-color); /* Borde usando variable */
-  border-radius: 20px; /* Bordes redondeados */
-  background-color: #0066CC; /* Azul medio - CAMBIADO de gris a azul */
-  color: #FFFFFF; /* Blanco */
-  cursor: pointer; /* Cursor de puntero */
-  font-size: 14px; /* Tamaño de fuente */
-  transition: 0.3s; /* Transición suave */
-}
-
-.logout-button:hover {
-  background-color: #003D6B; /* Azul más oscuro en hover - CAMBIADO */
-}
-
-.navbar.dark .logout-button {
-  background-color: #0066CC; /* Azul medio en modo oscuro - CAMBIADO */
-  color: #FFFFFF; /* Blanco - CAMBIADO para mejor contraste */
-}
-
-.navbar.dark .logout-button:hover {
-  background-color: #003D6B; /* Azul oscuro en hover - CAMBIADO */
+.dropdown {
+  position: relative;
 }
 
 .dropbtn {
-  background: #0066CC; /* CAMBIADO: Fondo azul igual que otros botones del menú */
+  background: none; /* NUEVO: Sin fondo por defecto */
   border: none;
-  color: #FFFFFF; /* Blanco - CAMBIADO para mejor contraste con fondo azul */
+  color: inherit;
   cursor: pointer;
-  font-size: 16px;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: 0.3s;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dropbtn::after {
+  content: '▾';
+  font-size: 0.8rem;
 }
 
 .dropbtn:hover {
-  color: #FFFFFF; /* Blanco en hover - CAMBIADO */
-  background-color: #003D6B; /* CAMBIADO: Azul más oscuro en hover igual que otros botones */
+  background: rgba(0, 102, 204, 0.1);
+  transform: translateY(-1px);
 }
 
-.dropdown {
-  position: relative; /* Necesario para posicionar el dropdown */
+.navbar.dark .dropbtn:hover {
+  background: rgba(0, 102, 204, 0.2);
 }
 
 .dropdown-content {
-  display: none; /* Oculto por defecto */
-  position: absolute; /* Posicionamiento absoluto */
-  top: 100%; /* AGREGADO: Posicionar justo debajo del botón */
-  left: 0; /* AGREGADO: Alinear a la izquierda */
-  min-width: 220px; /* AUMENTADO: de 200px a 220px para mejor legibilidad */
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3); /* AUMENTADO: Sombra más pronunciada */
-  z-index: 1000; /* AUMENTADO: de 1 a 1000 para estar por encima de todo */
-  border-radius: 8px; /* Bordes redondeados */
-  margin-top: 5px; /* REDUCIDO: de 8px a 5px para estar más cerca del botón */
-  overflow: hidden; /* AGREGADO: Para que los bordes redondeados se apliquen a los items */
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  backdrop-filter: blur(20px); /* NUEVO: Glassmorphism en dropdown */
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease; /* NUEVO: Animación de entrada */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .navbar.light .dropdown-content {
-  background-color: #FFFFFF; /* Blanco para contraste */
-  color: #004B87; /* Azul Sura */
-  border: 2px solid #0066CC; /* AGREGADO: Borde azul para definir mejor el dropdown */
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 102, 204, 0.15);
 }
 
 .navbar.dark .dropdown-content {
-  background-color: #1a1a2e; /* CAMBIADO: Azul muy oscuro igual que navbar */
-  color: #FFFFFF; /* CAMBIADO: Blanco para mejor contraste */
-  border: 2px solid #0066CC; /* AGREGADO: Borde azul en modo oscuro */
+  background: rgba(26, 26, 46, 0.95);
+  border: 1px solid rgba(0, 102, 204, 0.3);
 }
 
 .dropdown-content button {
-  color: inherit; /* Hereda del contenedor */
-  padding: 12px 16px;
+  color: inherit;
+  padding: 12px 18px;
   text-decoration: none;
   display: block;
   background: none;
@@ -226,15 +183,284 @@
   width: 100%;
   text-align: left;
   cursor: pointer;
-  font-size: 15px; /* AGREGADO: Tamaño de fuente para mejor legibilidad */
-  transition: background-color 0.2s ease; /* AGREGADO: Transición suave */
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .dropdown-content button:hover {
-  background-color: #0066CC; /* CAMBIADO: Fondo azul en hover */
-  color: #FFFFFF; /* AGREGADO: Texto blanco en hover para mejor contraste */
+  background: rgba(0, 102, 204, 0.15);
+  padding-left: 22px; /* NUEVO: Efecto de deslizamiento */
+}
+
+.navbar.dark .dropdown-content button:hover {
+  background: rgba(0, 102, 204, 0.25);
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/* ============================================
+   BUSCADOR - ESTILO REDONDEADO ELEGANTE
+   ============================================ */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05); /* NUEVO: Fondo sutil unificado */
+  border-radius: 25px;
+  padding: 4px;
+  transition: all 0.3s ease;
+}
+
+.navbar.dark .search-box {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search-box:focus-within {
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15); /* NUEVO: Efecto focus en toda la caja */
+  transform: scale(1.02);
+}
+
+.search-input {
+  padding: 8px 16px;
+  border: none; /* NUEVO: Sin borde */
+  background: transparent; /* NUEVO: Fondo transparente */
+  outline: none;
+  font-size: 0.9rem;
+  width: 200px;
+  transition: all 0.3s ease;
+  color: inherit;
+}
+
+.search-input::placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+
+.search-input:focus {
+  width: 250px; /* NUEVO: Se expande al hacer focus */
+}
+
+.search-button {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0066CC, #004B87); /* NUEVO: Gradiente */
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+}
+
+.search-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 102, 204, 0.35);
+  background: linear-gradient(135deg, #004B87, #003366);
+}
+
+/* ============================================
+   TOGGLE MODO OSCURO - ESTILO MINIMALISTA
+   ============================================ */
+
+.theme-toggle {
+  background: rgba(0, 102, 204, 0.1); /* NUEVO: Fondo sutil */
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  background: rgba(0, 102, 204, 0.2);
+  transform: rotate(15deg); /* NUEVO: Rotación en hover */
+}
+
+.navbar.dark .theme-toggle {
+  background: rgba(0, 102, 204, 0.15);
+}
+
+.navbar.dark .theme-toggle:hover {
+  background: rgba(0, 102, 204, 0.3);
+}
+
+/* ============================================
+   BOTÓN LOGIN/REGISTRO - ESTILO DESTACADO
+   ============================================ */
+
+.login-button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #0066CC, #004B87); /* NUEVO: Gradiente */
+  color: white;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+  background: linear-gradient(135deg, #004B87, #003366);
+}
+
+/* ============================================
+   INFO DE USUARIO - ESTILO COMPACTO
+   ============================================ */
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(0, 102, 204, 0.08); /* NUEVO: Fondo sutil */
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.navbar.dark .user-info {
+  background: rgba(0, 102, 204, 0.15);
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.user-type {
+  font-style: italic;
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+.logout-button {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(220, 53, 69, 0.9); /* NUEVO: Rojo para logout */
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+}
+
+.logout-button:hover {
+  background: rgba(200, 35, 51, 1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 12px 20px;
+    margin: 10px 15px;
+  }
+
+  .navbar h2 {
+    font-size: 1rem;
+  }
+
+  .search-input {
+    width: 150px;
+  }
+
+  .search-input:focus {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .navbar-left {
+    flex: 1;
+  }
+
+  .navbar h2 {
+    font-size: 0.9rem;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .nav-menu li button {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .navbar-right {
+    gap: 8px;
+  }
+
+  .search-input {
+    width: 120px;
+    font-size: 0.85rem;
+  }
+
+  .search-input:focus {
+    width: 150px;
+  }
+
+  .search-button {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px;
+  }
+
+  .logo {
+    height: 32px;
+  }
+
+  .navbar h2 {
+    display: none; /* Ocultar título en móvil muy pequeño */
+  }
+
+  .search-box {
+    flex: 1;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .user-name {
+    display: none; /* Ocultar nombre en móvil */
+  }
 }
