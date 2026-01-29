@@ -4,27 +4,65 @@ import './Profesores.css';
 function Profesores({ currentView, currentUser, profesores, cursos, onCreateProfesor, onUpdateProfesor, onDeactivateProfesor, onAssignCursos, setCurrentView }) {
   const [selectedProf, setSelectedProf] = useState(null);
   const [editing, setEditing] = useState(null);
-  const [formData, setFormData] = useState({ nombre: '', especialidad: '', foto: '', descripcion: '', hojaDeVidaFile: null, fotoFile: null });
+  
+  // ACTUALIZADO: Estructura de formData con campos del backend
+  const [formData, setFormData] = useState({
+    nombreCompleto: '',
+    numeroDocumento: '',
+    correoElectronico: '',
+    celular: '',
+    nivelAcademico: '',
+    areasAsignadas: '',
+    anosExperiencia: '',
+    tipoContrato: '',
+    perfilProfesional: '', // Descripción del profesor
+    foto: '', // URL
+    hojaDeVida: '', // URL
+    fotoFile: null, // Archivo de foto
+    hojaDeVidaFile: null // Archivo de hoja de vida
+  });
+  
   const [selectedCursos, setSelectedCursos] = useState([]);
 
-  // AGREGADO: URL de avatar por defecto (imagen de usuario genérico)
+  // Avatar por defecto
   const defaultAvatar = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
 
   useEffect(() => {
     if (currentView === 'profesores-add') {
       setEditing(null);
-      setFormData({ nombre: '', especialidad: '', foto: '', descripcion: '' });
+      setFormData({
+        nombreCompleto: '',
+        numeroDocumento: '',
+        correoElectronico: '',
+        celular: '',
+        nivelAcademico: '',
+        areasAsignadas: '',
+        anosExperiencia: '',
+        tipoContrato: '',
+        perfilProfesional: '',
+        foto: '',
+        hojaDeVida: '',
+        fotoFile: null,
+        hojaDeVidaFile: null
+      });
     } else if (currentView === 'profesores-edit' && selectedProf) {
       setFormData({
-        nombre: selectedProf.nombre,
-        especialidad: selectedProf.especialidad,
-        foto: selectedProf.foto,
-        descripcion: selectedProf.descripcion,
-        hojaDeVidaFile: null, // No cargar archivo existente
-        fotoFile: null
+        nombreCompleto: selectedProf.nombreCompleto || selectedProf.nombre || '',
+        numeroDocumento: selectedProf.numeroDocumento || '',
+        correoElectronico: selectedProf.correoElectronico || '',
+        celular: selectedProf.celular || '',
+        nivelAcademico: selectedProf.nivelAcademico || '',
+        areasAsignadas: selectedProf.areasAsignadas || selectedProf.especialidad || '',
+        anosExperiencia: selectedProf.anosExperiencia || '',
+        tipoContrato: selectedProf.tipoContrato || '',
+        perfilProfesional: selectedProf.perfilProfesional || selectedProf.descripcion || '',
+        foto: selectedProf.foto || '',
+        hojaDeVida: selectedProf.hojaDeVida || '',
+        fotoFile: null,
+        hojaDeVidaFile: null
       });
     } else if (currentView === 'profesores-assign-courses' && selectedProf) {
-      setSelectedCursos(selectedProf.cursos);
+      setSelectedCursos(selectedProf.cursos || []);
     }
   }, [currentView, selectedProf]);
 
@@ -54,32 +92,61 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
   };
 
   const handleAdd = () => {
-    if (formData.nombre && formData.especialidad) {
+    // Validación de campos requeridos
+    if (formData.nombreCompleto && formData.numeroDocumento && formData.correoElectronico) {
       const newProf = {
-        nombre: formData.nombre,
-        especialidad: formData.especialidad,
+        nombreCompleto: formData.nombreCompleto,
+        numeroDocumento: formData.numeroDocumento,
+        correoElectronico: formData.correoElectronico,
+        celular: formData.celular,
+        nivelAcademico: formData.nivelAcademico,
+        areasAsignadas: formData.areasAsignadas,
+        anosExperiencia: parseInt(formData.anosExperiencia) || 0,
+        tipoContrato: formData.tipoContrato,
+        perfilProfesional: formData.perfilProfesional,
         foto: formData.foto,
-        descripcion: formData.descripcion,
+        hojaDeVida: formData.hojaDeVida,
+        fotoFile: formData.fotoFile,
         hojaDeVidaFile: formData.hojaDeVidaFile,
-        fotoFile: formData.fotoFile
+        vigencia: true, // Por defecto activo
+        // RETROCOMPATIBILIDAD: Mantener campos antiguos por si acaso
+        nombre: formData.nombreCompleto,
+        especialidad: formData.areasAsignadas,
+        descripcion: formData.perfilProfesional,
+        estado: 'activo'
       };
       onCreateProfesor(newProf);
       setCurrentView('profesores-list');
+    } else {
+      alert('Por favor completa los campos requeridos: Nombre, Documento y Correo');
     }
   };
 
   const handleUpdate = () => {
-    if (editing && formData.nombre && formData.especialidad) {
+    if (editing && formData.nombreCompleto && formData.numeroDocumento && formData.correoElectronico) {
       const updatedProf = {
-        nombre: formData.nombre,
-        especialidad: formData.especialidad,
+        nombreCompleto: formData.nombreCompleto,
+        numeroDocumento: formData.numeroDocumento,
+        correoElectronico: formData.correoElectronico,
+        celular: formData.celular,
+        nivelAcademico: formData.nivelAcademico,
+        areasAsignadas: formData.areasAsignadas,
+        anosExperiencia: parseInt(formData.anosExperiencia) || 0,
+        tipoContrato: formData.tipoContrato,
+        perfilProfesional: formData.perfilProfesional,
         foto: formData.foto,
-        descripcion: formData.descripcion,
+        hojaDeVida: formData.hojaDeVida,
+        fotoFile: formData.fotoFile,
         hojaDeVidaFile: formData.hojaDeVidaFile,
-        fotoFile: formData.fotoFile
+        // RETROCOMPATIBILIDAD
+        nombre: formData.nombreCompleto,
+        especialidad: formData.areasAsignadas,
+        descripcion: formData.perfilProfesional
       };
       onUpdateProfesor(editing, updatedProf);
       setCurrentView('profesores-list');
+    } else {
+      alert('Por favor completa los campos requeridos: Nombre, Documento y Correo');
     }
   };
 
@@ -95,32 +162,39 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
   };
 
   const isAdmin = currentUser && currentUser.userType === 'profesor_admin';
-  const activeProfesores = profesores.filter(p => p.estado === 'activo');
+  const activeProfesores = profesores.filter(p => p.estado === 'activo' || p.vigencia === true);
 
   if (currentView === 'profesores-list') {
     const listToShow = isAdmin ? profesores : activeProfesores;
     return (
       <div className="profesores-container">
         <h2>Lista de Profesores</h2>
+        {isAdmin && (
+          <button className="add-profesor-btn" onClick={() => setCurrentView('profesores-add')}>
+            + Agregar Profesor
+          </button>
+        )}
         <div className="profesores-grid">
           {listToShow.map(prof => (
             <div key={prof.id} className="profesor-card">
-              {/* MODIFICADO: Usar defaultAvatar si no hay foto */}
               <img 
                 src={prof.foto || defaultAvatar} 
-                alt={prof.nombre} 
+                alt={prof.nombreCompleto || prof.nombre} 
                 className="profesor-foto" 
-                onError={(e) => { e.target.src = defaultAvatar; }} // AGREGADO: Si falla la carga, mostrar avatar por defecto
+                onError={(e) => { e.target.src = defaultAvatar; }}
               />
-              <h3>{prof.nombre}</h3>
-              <p>{prof.especialidad}</p>
-              {isAdmin && <p>Estado: {prof.estado}</p>}
+              <h3>{prof.nombreCompleto || prof.nombre}</h3>
+              <p className="profesor-area">{prof.areasAsignadas || prof.especialidad}</p>
+              {(prof.anosExperiencia || prof.anosExperiencia === 0) && (
+                <p className="profesor-experiencia">{prof.anosExperiencia} años de experiencia</p>
+              )}
+              {isAdmin && <p className="profesor-estado">Estado: {prof.estado || (prof.vigencia ? 'activo' : 'inactivo')}</p>}
               <button onClick={() => { setSelectedProf(prof); setCurrentView('profesores-profile'); }}>Ver Perfil</button>
               {isAdmin && (
-                <div>
-                  <button onClick={() => setCurrentView('profesores-edit')}>Editar</button>
+                <div className="admin-actions">
+                  <button onClick={() => { setSelectedProf(prof); setEditing(prof.id); setCurrentView('profesores-edit'); }}>Editar</button>
                   <button onClick={() => { setSelectedProf(prof); setSelectedCursos(prof.cursosAsignados || []); setCurrentView('profesores-assign-courses'); }}>Asignar Cursos</button>
-                  <button onClick={() => handleDeactivate(prof.id)}>Desactivar</button>
+                  <button className="btn-deactivate" onClick={() => handleDeactivate(prof.id)}>Desactivar</button>
                 </div>
               )}
             </div>
@@ -136,41 +210,69 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
       <div className="profesores-container">
         <h2>Perfil del Profesor</h2>
         <div className="profesor-profile">
-          {/* MODIFICADO: Usar defaultAvatar si no hay foto */}
           <img 
             src={selectedProf.foto || defaultAvatar} 
-            alt={selectedProf.nombre} 
+            alt={selectedProf.nombreCompleto || selectedProf.nombre} 
             className="profesor-foto-large" 
-            onError={(e) => { e.target.src = defaultAvatar; }} // AGREGADO: Si falla la carga, mostrar avatar por defecto
+            onError={(e) => { e.target.src = defaultAvatar; }}
           />
-          <h3>{selectedProf.nombre}</h3>
-          <div className="profesor-info">
-            <div className="info-section">
-              <h4>Información Personal</h4>
-              <p><strong>Especialidad:</strong> {selectedProf.especialidad}</p>
-              <p><strong>Estado:</strong> {selectedProf.estado}</p>
-            </div>
-            <div className="info-section">
-              <h4>Descripción</h4>
-              <p>{selectedProf.descripcion}</p>
-            </div>
-            <div className="info-section">
-              <h4>Cursos que Dicta</h4>
-              <ul>
-                {profCursos.length > 0 ? profCursos.map(c => <li key={c.id}>{c.nombre} - {c.descripcion}</li>) : <li>No tiene cursos asignados</li>}
-              </ul>
-            </div>
-            <div className="info-section">
-              <h4>Documentos</h4>
-              {selectedProf.hojaDeVidaFile ? (
-                <a href={URL.createObjectURL(selectedProf.hojaDeVidaFile)} download={`${selectedProf.nombre}_CV.${selectedProf.hojaDeVidaFile.name.split('.').pop()}`}>
-                  <button className="download-cv">Descargar Hoja de Vida</button>
-                </a>
-              ) : (
-                <p>No hay hoja de vida disponible</p>
-              )}
-            </div>
+          <h3>{selectedProf.nombreCompleto || selectedProf.nombre}</h3>
+          
+          {/* Información Personal */}
+          <div className="info-section">
+            <h4>Información Personal</h4>
+            <p><strong>Documento:</strong> {selectedProf.numeroDocumento || 'No especificado'}</p>
+            <p><strong>Correo:</strong> {selectedProf.correoElectronico || 'No especificado'}</p>
+            <p><strong>Celular:</strong> {selectedProf.celular || 'No especificado'}</p>
+            <p><strong>Estado:</strong> {selectedProf.estado || (selectedProf.vigencia ? 'Activo' : 'Inactivo')}</p>
           </div>
+
+          {/* Información Académica */}
+          <div className="info-section">
+            <h4>Información Académica</h4>
+            <p><strong>Nivel Académico:</strong> {selectedProf.nivelAcademico || 'No especificado'}</p>
+            <p><strong>Áreas Asignadas:</strong> {selectedProf.areasAsignadas || selectedProf.especialidad || 'No especificado'}</p>
+            <p><strong>Años de Experiencia:</strong> {selectedProf.anosExperiencia || 0}</p>
+          </div>
+
+          {/* Perfil Profesional */}
+          {(selectedProf.perfilProfesional || selectedProf.descripcion) && (
+            <div className="info-section">
+              <h4>Perfil Profesional</h4>
+              <p>{selectedProf.perfilProfesional || selectedProf.descripcion}</p>
+            </div>
+          )}
+
+          {/* Información Laboral */}
+          <div className="info-section">
+            <h4>Información Laboral</h4>
+            <p><strong>Tipo de Contrato:</strong> {selectedProf.tipoContrato || 'No especificado'}</p>
+          </div>
+
+          {/* Cursos Asignados */}
+          <div className="info-section">
+            <h4>Cursos que Dicta</h4>
+            <ul>
+              {profCursos.length > 0 ? profCursos.map(c => <li key={c.id}>{c.nombre} - {c.descripcion}</li>) : <li>No tiene cursos asignados</li>}
+            </ul>
+          </div>
+
+          {/* Documentos */}
+          <div className="info-section">
+            <h4>Documentos</h4>
+            {selectedProf.hojaDeVidaFile ? (
+              <a href={URL.createObjectURL(selectedProf.hojaDeVidaFile)} download={`${selectedProf.nombreCompleto || selectedProf.nombre}_CV.${selectedProf.hojaDeVidaFile.name.split('.').pop()}`}>
+                <button className="download-cv">Descargar Hoja de Vida</button>
+              </a>
+            ) : selectedProf.hojaDeVida ? (
+              <a href={selectedProf.hojaDeVida} target="_blank" rel="noopener noreferrer">
+                <button className="download-cv">Ver Hoja de Vida</button>
+              </a>
+            ) : (
+              <p>No hay hoja de vida disponible</p>
+            )}
+          </div>
+
           <button className="back-button" onClick={() => setCurrentView('profesores-list')}>Volver a la Lista</button>
         </div>
       </div>
@@ -181,29 +283,206 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
     return (
       <div className="profesores-container">
         <h2>Agregar Profesor</h2>
-        <form onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
-          <input name="nombre" value={formData.nombre} onChange={handleInputChange} placeholder="Nombre" required />
-          <input name="especialidad" value={formData.especialidad} onChange={handleInputChange} placeholder="Especialidad" required />
-          <input name="foto" value={formData.foto} onChange={handleInputChange} placeholder="URL Foto (opcional)" />
-          <label>Foto desde archivo:</label>
-          <input type="file" name="fotoFile" accept="image/*" onChange={handleFileChange} />
-          {/* AGREGADO: Vista previa de la foto */}
-          {formData.foto && (
-            <div className="foto-preview">
-              <p>Vista previa:</p>
-              <img 
-                src={formData.foto || defaultAvatar} 
-                alt="Vista previa" 
-                className="preview-image"
-                onError={(e) => { e.target.src = defaultAvatar; }}
+        <form className="profesor-form" onSubmit={(e) => { e.preventDefault(); handleAdd(); }}>
+          
+          {/* Sección: Información Personal */}
+          <fieldset>
+            <legend>Información Personal</legend>
+            
+            <div className="form-group">
+              <label htmlFor="nombreCompleto">Nombre Completo *</label>
+              <input 
+                id="nombreCompleto"
+                name="nombreCompleto" 
+                value={formData.nombreCompleto} 
+                onChange={handleInputChange} 
+                placeholder="Ej: Juan Pérez García" 
+                required 
               />
             </div>
-          )}
-          <textarea name="descripcion" value={formData.descripcion} onChange={handleInputChange} placeholder="Descripción" />
-          <label>Hoja de Vida:</label>
-          <input type="file" name="hojaDeVidaFile" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
-          <button type="submit">Agregar</button>
-          <button type="button" onClick={() => setCurrentView('profesores-list')}>Cancelar</button>
+
+            <div className="form-group">
+              <label htmlFor="numeroDocumento">Número de Documento *</label>
+              <input 
+                id="numeroDocumento"
+                name="numeroDocumento" 
+                value={formData.numeroDocumento} 
+                onChange={handleInputChange} 
+                placeholder="Ej: 1234567890" 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="correoElectronico">Correo Electrónico *</label>
+              <input 
+                id="correoElectronico"
+                type="email"
+                name="correoElectronico" 
+                value={formData.correoElectronico} 
+                onChange={handleInputChange} 
+                placeholder="Ej: profesor@universidad.edu" 
+                required 
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="celular">Celular</label>
+              <input 
+                id="celular"
+                name="celular" 
+                value={formData.celular} 
+                onChange={handleInputChange} 
+                placeholder="Ej: 3001234567" 
+              />
+            </div>
+          </fieldset>
+
+          {/* Sección: Información Académica */}
+          <fieldset>
+            <legend>Información Académica</legend>
+            
+            <div className="form-group">
+              <label htmlFor="nivelAcademico">Nivel Académico</label>
+              <select 
+                id="nivelAcademico"
+                name="nivelAcademico" 
+                value={formData.nivelAcademico} 
+                onChange={handleInputChange}
+              >
+                <option value="">Seleccionar...</option>
+                <option value="Licenciatura">Licenciatura</option>
+                <option value="Especialización">Especialización</option>
+                <option value="Maestría">Maestría</option>
+                <option value="Doctorado">Doctorado</option>
+                <option value="Postdoctorado">Postdoctorado</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="areasAsignadas">Áreas Asignadas</label>
+              <input 
+                id="areasAsignadas"
+                name="areasAsignadas" 
+                value={formData.areasAsignadas} 
+                onChange={handleInputChange} 
+                placeholder="Ej: Matemáticas, Física" 
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="anosExperiencia">Años de Experiencia</label>
+              <input 
+                id="anosExperiencia"
+                type="number"
+                name="anosExperiencia" 
+                value={formData.anosExperiencia} 
+                onChange={handleInputChange} 
+                placeholder="Ej: 5" 
+                min="0"
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="perfilProfesional">Perfil Profesional</label>
+              <textarea 
+                id="perfilProfesional"
+                name="perfilProfesional" 
+                value={formData.perfilProfesional} 
+                onChange={handleInputChange} 
+                placeholder="Describe tu experiencia, metodología de enseñanza, especialidades y fortalezas como docente..."
+                rows="4"
+                maxLength="500"
+              />
+              <small className="char-count">{formData.perfilProfesional.length}/500 caracteres</small>
+            </div>
+          </fieldset>
+
+          {/* Sección: Información Laboral */}
+          <fieldset>
+            <legend>Información Laboral</legend>
+            
+            <div className="form-group">
+              <label htmlFor="tipoContrato">Tipo de Contrato</label>
+              <select 
+                id="tipoContrato"
+                name="tipoContrato" 
+                value={formData.tipoContrato} 
+                onChange={handleInputChange}
+              >
+                <option value="">Seleccionar...</option>
+                <option value="Tiempo Completo">Tiempo Completo</option>
+                <option value="Medio Tiempo">Medio Tiempo</option>
+                <option value="Cátedra">Cátedra</option>
+                <option value="Contrato">Contrato</option>
+              </select>
+            </div>
+          </fieldset>
+
+          {/* Sección: Documentos y Foto */}
+          <fieldset>
+            <legend>Documentos y Foto</legend>
+            
+            <div className="form-group">
+              <label htmlFor="foto">URL de Foto</label>
+              <input 
+                id="foto"
+                name="foto" 
+                value={formData.foto} 
+                onChange={handleInputChange} 
+                placeholder="https://ejemplo.com/foto.jpg" 
+              />
+              <small className="help-text">O sube una foto desde tu computadora:</small>
+              <input 
+                type="file" 
+                name="fotoFile" 
+                accept="image/*" 
+                onChange={handleFileChange}
+                className="file-input"
+              />
+              {formData.foto && (
+                <div className="foto-preview">
+                  <p>Vista previa:</p>
+                  <img 
+                    src={formData.foto} 
+                    alt="Vista previa" 
+                    className="preview-image"
+                    onError={(e) => { e.target.src = defaultAvatar; }}
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="hojaDeVida">URL de Hoja de Vida (CV)</label>
+              <input 
+                id="hojaDeVida"
+                name="hojaDeVida" 
+                value={formData.hojaDeVida} 
+                onChange={handleInputChange} 
+                placeholder="https://ejemplo.com/cv.pdf" 
+              />
+              <small className="help-text">O sube tu hoja de vida desde tu computadora:</small>
+              <input 
+                type="file" 
+                name="hojaDeVidaFile" 
+                accept=".pdf,.doc,.docx" 
+                onChange={handleFileChange}
+                className="file-input"
+              />
+              {formData.hojaDeVida && (
+                <p className="url-preview">✓ URL ingresada: <a href={formData.hojaDeVida} target="_blank" rel="noopener noreferrer">Ver documento</a></p>
+              )}
+              {formData.hojaDeVidaFile && (
+                <p className="file-preview">✓ Archivo seleccionado: {formData.hojaDeVidaFile.name}</p>
+              )}
+            </div>
+          </fieldset>
+
+          <div className="form-actions">
+            <button type="submit" className="btn-submit">Agregar Profesor</button>
+            <button type="button" className="btn-cancel" onClick={() => setCurrentView('profesores-list')}>Cancelar</button>
+          </div>
         </form>
       </div>
     );
@@ -214,35 +493,214 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
       return (
         <div className="profesores-container">
           <h2>Editar Profesor</h2>
-          <form onSubmit={(e) => { e.preventDefault(); handleUpdate(); }}>
-            <input name="nombre" value={formData.nombre} onChange={handleInputChange} placeholder="Nombre" required />
-            <input name="especialidad" value={formData.especialidad} onChange={handleInputChange} placeholder="Especialidad" required />
-            <input name="foto" value={formData.foto} onChange={handleInputChange} placeholder="URL Foto (opcional)" />
-            <label>Foto desde archivo:</label>
-            <input type="file" name="fotoFile" accept="image/*" onChange={handleFileChange} />
-            {/* AGREGADO: Vista previa de la foto */}
-            {formData.foto && (
-              <div className="foto-preview">
-                <p>Vista previa:</p>
-                <img 
-                  src={formData.foto || defaultAvatar} 
-                  alt="Vista previa" 
-                  className="preview-image"
-                  onError={(e) => { e.target.src = defaultAvatar; }}
+          <form className="profesor-form" onSubmit={(e) => { e.preventDefault(); handleUpdate(); }}>
+            
+            {/* Sección: Información Personal */}
+            <fieldset>
+              <legend>Información Personal</legend>
+              
+              <div className="form-group">
+                <label htmlFor="nombreCompleto">Nombre Completo *</label>
+                <input 
+                  id="nombreCompleto"
+                  name="nombreCompleto" 
+                  value={formData.nombreCompleto} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej: Juan Pérez García" 
+                  required 
                 />
               </div>
-            )}
-            <textarea name="descripcion" value={formData.descripcion} onChange={handleInputChange} placeholder="Descripción" />
-            <label>Hoja de Vida:</label>
-            <input type="file" name="hojaDeVidaFile" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
-            <button type="submit">Actualizar</button>
-            <button type="button" onClick={() => { setEditing(null); }}>Cancelar</button>
+
+              <div className="form-group">
+                <label htmlFor="numeroDocumento">Número de Documento *</label>
+                <input 
+                  id="numeroDocumento"
+                  name="numeroDocumento" 
+                  value={formData.numeroDocumento} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej: 1234567890" 
+                  required 
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="correoElectronico">Correo Electrónico *</label>
+                <input 
+                  id="correoElectronico"
+                  type="email"
+                  name="correoElectronico" 
+                  value={formData.correoElectronico} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej: profesor@universidad.edu" 
+                  required 
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="celular">Celular</label>
+                <input 
+                  id="celular"
+                  name="celular" 
+                  value={formData.celular} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej: 3001234567" 
+                />
+              </div>
+            </fieldset>
+
+            {/* Sección: Información Académica */}
+            <fieldset>
+              <legend>Información Académica</legend>
+              
+              <div className="form-group">
+                <label htmlFor="nivelAcademico">Nivel Académico</label>
+                <select 
+                  id="nivelAcademico"
+                  name="nivelAcademico" 
+                  value={formData.nivelAcademico} 
+                  onChange={handleInputChange}
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="Licenciatura">Licenciatura</option>
+                  <option value="Especialización">Especialización</option>
+                  <option value="Maestría">Maestría</option>
+                  <option value="Doctorado">Doctorado</option>
+                  <option value="Postdoctorado">Postdoctorado</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="areasAsignadas">Áreas Asignadas</label>
+                <input 
+                  id="areasAsignadas"
+                  name="areasAsignadas" 
+                  value={formData.areasAsignadas} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej: Matemáticas, Física" 
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="anosExperiencia">Años de Experiencia</label>
+                <input 
+                  id="anosExperiencia"
+                  type="number"
+                  name="anosExperiencia" 
+                  value={formData.anosExperiencia} 
+                  onChange={handleInputChange} 
+                  placeholder="Ej: 5" 
+                  min="0"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="perfilProfesional">Perfil Profesional</label>
+                <textarea 
+                  id="perfilProfesional"
+                  name="perfilProfesional" 
+                  value={formData.perfilProfesional} 
+                  onChange={handleInputChange} 
+                  placeholder="Describe tu experiencia, metodología de enseñanza, especialidades y fortalezas como docente..."
+                  rows="4"
+                  maxLength="500"
+                />
+                <small className="char-count">{formData.perfilProfesional.length}/500 caracteres</small>
+              </div>
+            </fieldset>
+
+            {/* Sección: Información Laboral */}
+            <fieldset>
+              <legend>Información Laboral</legend>
+              
+              <div className="form-group">
+                <label htmlFor="tipoContrato">Tipo de Contrato</label>
+                <select 
+                  id="tipoContrato"
+                  name="tipoContrato" 
+                  value={formData.tipoContrato} 
+                  onChange={handleInputChange}
+                >
+                  <option value="">Seleccionar...</option>
+                  <option value="Tiempo Completo">Tiempo Completo</option>
+                  <option value="Medio Tiempo">Medio Tiempo</option>
+                  <option value="Cátedra">Cátedra</option>
+                  <option value="Contrato">Contrato</option>
+                </select>
+              </div>
+            </fieldset>
+
+            {/* Sección: Documentos y Foto */}
+            <fieldset>
+              <legend>Documentos y Foto</legend>
+              
+              <div className="form-group">
+                <label htmlFor="foto">URL de Foto</label>
+                <input 
+                  id="foto"
+                  name="foto" 
+                  value={formData.foto} 
+                  onChange={handleInputChange} 
+                  placeholder="https://ejemplo.com/foto.jpg" 
+                />
+                <small className="help-text">O sube una foto desde tu computadora:</small>
+                <input 
+                  type="file" 
+                  name="fotoFile" 
+                  accept="image/*" 
+                  onChange={handleFileChange}
+                  className="file-input"
+                />
+                {formData.foto && (
+                  <div className="foto-preview">
+                    <p>Vista previa:</p>
+                    <img 
+                      src={formData.foto} 
+                      alt="Vista previa" 
+                      className="preview-image"
+                      onError={(e) => { e.target.src = defaultAvatar; }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="hojaDeVida">URL de Hoja de Vida (CV)</label>
+                <input 
+                  id="hojaDeVida"
+                  name="hojaDeVida" 
+                  value={formData.hojaDeVida} 
+                  onChange={handleInputChange} 
+                  placeholder="https://ejemplo.com/cv.pdf" 
+                />
+                <small className="help-text">O sube tu hoja de vida desde tu computadora:</small>
+                <input 
+                  type="file" 
+                  name="hojaDeVidaFile" 
+                  accept=".pdf,.doc,.docx" 
+                  onChange={handleFileChange}
+                  className="file-input"
+                />
+                {formData.hojaDeVida && (
+                  <p className="url-preview">✓ URL ingresada: <a href={formData.hojaDeVida} target="_blank" rel="noopener noreferrer">Ver documento</a></p>
+                )}
+                {formData.hojaDeVidaFile && (
+                  <p className="file-preview">✓ Archivo seleccionado: {formData.hojaDeVidaFile.name}</p>
+                )}
+              </div>
+            </fieldset>
+
+            <div className="form-actions">
+              <button type="submit" className="btn-submit">Actualizar</button>
+              <button type="button" className="btn-cancel" onClick={() => { setEditing(null); setCurrentView('profesores-list'); }}>Cancelar</button>
+            </div>
           </form>
         </div>
       );
     } else {
       // Selección de profesor a editar
-      const sortedProfesores = [...profesores].sort((a, b) => a.nombre.localeCompare(b.nombre));
+      const sortedProfesores = [...profesores].sort((a, b) => 
+        (a.nombreCompleto || a.nombre).localeCompare(b.nombreCompleto || b.nombre)
+      );
       return (
         <div className="profesores-container">
           <h2>Seleccionar Profesor para Editar</h2>
@@ -252,12 +710,20 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
               const profId = parseInt(e.target.value);
               if (profId) {
                 const prof = profesores.find(p => p.id === profId);
+                setSelectedProf(prof);
                 setEditing(profId);
                 setFormData({
-                  nombre: prof.nombre,
-                  especialidad: prof.especialidad,
-                  descripcion: prof.descripcion,
-                  foto: prof.foto,
+                  nombreCompleto: prof.nombreCompleto || prof.nombre || '',
+                  numeroDocumento: prof.numeroDocumento || '',
+                  correoElectronico: prof.correoElectronico || '',
+                  celular: prof.celular || '',
+                  nivelAcademico: prof.nivelAcademico || '',
+                  areasAsignadas: prof.areasAsignadas || prof.especialidad || '',
+                  anosExperiencia: prof.anosExperiencia || '',
+                  tipoContrato: prof.tipoContrato || '',
+                  perfilProfesional: prof.perfilProfesional || prof.descripcion || '',
+                  foto: prof.foto || '',
+                  hojaDeVida: prof.hojaDeVida || '',
                   fotoFile: null,
                   hojaDeVidaFile: null
                 });
@@ -268,7 +734,7 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
             <option value="">Selecciona un profesor...</option>
             {sortedProfesores.map(prof => (
               <option key={prof.id} value={prof.id}>
-                {prof.nombre} - {prof.especialidad}
+                {prof.nombreCompleto || prof.nombre} - {prof.areasAsignadas || prof.especialidad}
               </option>
             ))}
           </select>
