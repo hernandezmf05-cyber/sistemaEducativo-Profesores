@@ -38,7 +38,7 @@ function Navbar({ query, setQuery, setCurrentView, toggleDarkMode, isDark, curre
             onChange={(e) => setQuery(e.target.value)} // Actualiza el estado de búsqueda
             className="search-input" // Clase CSS para estilos
           />
-          <button className="search-button"> {/* Botón de búsqueda */}
+          <button className="search-button" onClick={() => setCurrentView('profesores-list')}> {/* Botón de búsqueda */}
             Buscar
           </button>
         </div>

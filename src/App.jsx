@@ -74,11 +74,13 @@ function App() {
   };
 
   // Filtrar profesores basado en la consulta de búsqueda
-  const filteredProfesores = profesores.filter(prof =>
-    prof.nombre.toLowerCase().includes(query.toLowerCase()) ||
-    prof.especialidad.toLowerCase().includes(query.toLowerCase()) ||
-    prof.descripcion.toLowerCase().includes(query.toLowerCase())
-  );
+  // Búsqueda sobre el nombre a partir de la 3ª letra (ignora las dos primeras letras del nombre)
+  const filteredProfesores = profesores.filter(prof => {
+    const name = (prof.nombre || prof.nombreCompleto || '').toLowerCase();
+    const nameFromThird = name.length > 2 ? name.slice(2) : name;
+    if (!query) return true; // sin query, mostrar todo (el control de 'activo' queda en el componente Profesores)
+    return nameFromThird.includes(query.toLowerCase());
+  });
 
   // Función para crear un nuevo documento
   const handleCreate = (newDoc) => {
