@@ -44,7 +44,7 @@ function Navbar({ query, setQuery, setCurrentView, toggleDarkMode, isDark, curre
         <div className="search-box"> {/* Contenedor de la caja de búsqueda */}
           <input
             type="text"
-            placeholder="Buscar profesores..." // Placeholder descriptivo
+            placeholder="Busquda de profes por apellido" // Placeholder descriptivo
             value={localQuery} // Valor controlado localmente para debounce
             onChange={(e) => setLocalQuery(e.target.value)} // Actualiza estado local
             onKeyDown={(e) => { if (e.key === 'Enter') setCurrentView('profesores-list'); }}
