@@ -194,7 +194,6 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                 <div className="admin-actions">
                   <button onClick={() => { setSelectedProf(prof); setEditing(prof.id); setCurrentView('profesores-edit'); }}>Editar</button>
                   <button onClick={() => { setSelectedProf(prof); setSelectedCursos(prof.cursosAsignados || []); setCurrentView('profesores-assign-courses'); }}>Asignar Cursos</button>
-                  <button className="btn-deactivate" onClick={() => handleDeactivate(prof.id)}>Desactivar</button>
                 </div>
               )}
             </div>
@@ -219,13 +218,30 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                 onError={(e) => { e.target.src = defaultAvatar; }}
               />
             </div>
-            <div className="profile-header-right">
-              <h3>{selectedProf.nombreCompleto || selectedProf.nombre}</h3>
-              <p className="profile-subtitle">{selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor'}</p>
-              <span className="profile-status-badge">
-                {selectedProf.estado || (selectedProf.vigencia ? '✓ Activo' : '○ Inactivo')}
-              </span>
-            </div>
+              <div className="profile-header-right">
+                <h3>{selectedProf.nombreCompleto || selectedProf.nombre}</h3>
+                <p className="profile-subtitle">{selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor'}</p>
+                <div className="profile-status-row">
+                  <span className="profile-status-badge">
+                    {selectedProf.estado || (selectedProf.vigencia ? '✓ Activo' : '○ Inactivo')}
+                  </span>
+                  {isAdmin && (
+                    <label className="switch" style={{marginLeft: '10px'}}>
+                      <input
+                        type="checkbox"
+                        checked={selectedProf.vigencia !== false}
+                        onChange={(e) => {
+                          const checked = e.target.checked;
+                          const updated = { ...selectedProf, vigencia: checked, estado: checked ? 'activo' : 'inactivo' };
+                          if (onUpdateProfesor) onUpdateProfesor(selectedProf.id, updated);
+                          setSelectedProf(updated);
+                        }}
+                      />
+                      <span className="slider" />
+                    </label>
+                  )}
+                </div>
+              </div>
           </div>
 
           {/* CONTENIDO EN GRID DE 2 COLUMNAS */}
