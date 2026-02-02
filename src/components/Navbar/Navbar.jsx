@@ -1,10 +1,21 @@
-import React from 'react'; // Importamos React para crear componentes
+import React, { useState, useEffect } from 'react'; // Importamos React y hooks para manejar estado y efectos
 
 import './Navbar.css'; // Estilos específicos de la barra de navegación
 
 function Navbar({ query, setQuery, setCurrentView, toggleDarkMode, isDark, currentUser, handleLogout }) {
   // Función Navbar que recibe props para búsqueda, navegación, modo oscuro, usuario actual y logout
-  console.log('Navbar rendered'); // Log para debugging
+  const [localQuery, setLocalQuery] = useState(query || '');
+
+  useEffect(() => {
+    setLocalQuery(query || '');
+  }, [query]);
+
+  // Debounce: actualiza `setQuery` en App después de 300ms
+  useEffect(() => {
+    const t = setTimeout(() => setQuery(localQuery), 300);
+    return () => clearTimeout(t);
+  }, [localQuery, setQuery]);
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -34,8 +45,9 @@ function Navbar({ query, setQuery, setCurrentView, toggleDarkMode, isDark, curre
           <input
             type="text"
             placeholder="Buscar profesores..." // Placeholder descriptivo
-            value={query} // Valor controlado por el estado
-            onChange={(e) => setQuery(e.target.value)} // Actualiza el estado de búsqueda
+            value={localQuery} // Valor controlado localmente para debounce
+            onChange={(e) => setLocalQuery(e.target.value)} // Actualiza estado local
+            onKeyDown={(e) => { if (e.key === 'Enter') setCurrentView('profesores-list'); }}
             className="search-input" // Clase CSS para estilos
           />
           <button className="search-button" onClick={() => setCurrentView('profesores-list')}> {/* Botón de búsqueda */}

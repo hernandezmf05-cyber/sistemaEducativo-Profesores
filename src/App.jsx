@@ -74,12 +74,22 @@ function App() {
   };
 
   // Filtrar profesores basado en la consulta de búsqueda
-  // Búsqueda sobre el nombre a partir de la 3ª letra (ignora las dos primeras letras del nombre)
+  // Sólo aplicar filtro cuando la consulta tenga 3 o más caracteres.
+  // Para el nombre, la coincidencia se evalúa a partir de la 3ª letra (slice(2)).
   const filteredProfesores = profesores.filter(prof => {
+    const q = (query || '').trim().toLowerCase();
+    if (q.length < 3) return true; // sin suficiente longitud, mostrar todo
+
     const name = (prof.nombre || prof.nombreCompleto || '').toLowerCase();
     const nameFromThird = name.length > 2 ? name.slice(2) : name;
-    if (!query) return true; // sin query, mostrar todo (el control de 'activo' queda en el componente Profesores)
-    return nameFromThird.includes(query.toLowerCase());
+    const especialidad = (prof.especialidad || prof.areasAsignadas || '').toLowerCase();
+    const descripcion = (prof.descripcion || prof.perfilProfesional || '').toLowerCase();
+
+    return (
+      nameFromThird.includes(q) ||
+      especialidad.includes(q) ||
+      descripcion.includes(q)
+    );
   });
 
   // Función para crear un nuevo documento
