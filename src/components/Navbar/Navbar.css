@@ -43,12 +43,19 @@
 }
 
 .logo {
-  height: 40px;
-  transition: transform 0.3s ease;
+  height: 36px;
+  width: auto;
+  transition: none;
+  opacity: 1; /* Letras visibles */
+  pointer-events: auto;
+  background: transparent; /* Quitar fondo del contenedor */
+  image-rendering: -webkit-optimize-contrast; /* Mejora nitidez en algunos navegadores */
+  image-rendering: crisp-edges;
+  mix-blend-mode: multiply; /* Elimina fondos blancos / claros al mezclar con el fondo del navbar */
 }
 
 .logo:hover {
-  transform: scale(1.05); /* Efecto hover sutil */
+  transform: none;
 }
 
 .navbar h2 {
