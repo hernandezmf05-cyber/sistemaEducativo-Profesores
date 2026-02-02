@@ -128,7 +128,7 @@ function App() {
         handleLogout={handleLogout}
       />
       {/* Vista de inicio con logo y contador */}
-      {currentView === 'home' && (
+     {currentView === 'home' && (
   <div className="home-container">
     <div className="home-hero">
       <h1>Sistema de Gestión de Profesores</h1>
@@ -136,15 +136,6 @@ function App() {
         Plataforma centralizada para la administración de profesores,
         asignación de cursos y control académico.
       </p>
-
-      {!currentUser && (
-        <button
-          className="home-login-btn"
-          onClick={() => setCurrentView('login')}
-        >
-          Iniciar sesión
-        </button>
-      )}
     </div>
 
     <div className="home-cards">
@@ -165,6 +156,7 @@ function App() {
     </div>
   </div>
 )}
+
 
       {/* Vista de documentos con lista filtrada (CRUD completo) */}
       {currentView === 'documents-crud' && (
