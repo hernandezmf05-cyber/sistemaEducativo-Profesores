@@ -250,6 +250,68 @@ yarn start
 
 ---
 
+## 5) Novedades recientes (Pull Requests consolidados)
+
+Resumen de los últimos merges detectados en el repositorio (últimos PRs integrados):
+
+- Merge `78d2a65` — Merge pull request #4 from `DavidHenaoMD/feature-david`
+  - Descripción: cambios en el inicio desde `App`.
+  - Archivos afectados: `src/App.css`, `src/App.jsx` (ajustes visuales y estructura del inicio).
+
+- Merge `6b3c246` — Merge pull request #3 from `hernandezmf05-cyber/featureMafeHernandez`
+  - Descripción: Mejoras de UI.
+  - Archivos afectados: `src/components/Navbar/Navbar.css`, `src/components/Navbar/Navbar.js`, `src/components/Profesores/Profesores.css`, `src/components/Profesores/Profesores.jsx`.
+  - Impacto: cambios extensos en estilos y en la UI de `Profesores` (mejoras visuales, reestructuración de componentes y comportamiento de perfil).
+
+- Merge `dc5a655` — Merge pull request #1 from `hernandezmf05-cyber/featureMafeHernandez`
+  - Descripción: Feature inicial de Mafe Hernandez (varias mejoras UI y ajustes en `Login`, `Navbar` y `Profesores`).
+  - Archivos afectados: `package-lock.json`, `src/App.css`, `src/App.jsx`, `src/components/Login/*`, `src/components/Navbar/*`, `src/components/Profesores/*`.
+  - Impacto: introducción de cambios estéticos y refactor menores en componentes de login y navegación.
+
+Notas de consolidación:
+- Muchos cambios fueron de UI/CSS y de refinamiento visual; hay varias actualizaciones de `Profesores` (HTML/JSX y CSS). Recomendación: revisar manualmente las diferencias en `Profesores.jsx` y `Profesores.css` para asegurar compatibilidad funcional antes de desplegar.
+- No se detectaron cambios que modifiquen la API pública del `App` (métodos/props principales), pero sí se ajustaron handlers y la presentación: ejecutar pruebas manuales en vistas de `Login`, `Navbar` y `Profesores`.
+
+## 6) Técnicas de trabajo recomendadas (guía rápida)
+
+Para mantener un flujo de trabajo limpio y colaborativo propongo las siguientes prácticas:
+
+- Flujo Git y Pull Requests
+  - Usa ramas temáticas: `feature/`, `fix/`, `chore/`.
+  - Abre PRs pequeños y enfocados (1 objetivo por PR) con descripción clara, pasos para validar y screenshots si aplica.
+  - Ejecuta revisiones (code review) con checklist: compila, pasa lint, pruebas básicas, cambios en CSS verificados en móvil/desktop.
+
+- Convenciones de commits
+  - Usa mensajes tipo Conventional Commits: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`.
+  - Ejemplo: `feat(profesores): add profile toggle to control vigencia`.
+
+- Estilo y calidad
+  - Añadir `eslint` y `prettier` (o usar la configuración del equipo) y aplicar hooks `pre-commit` (husky) para formateo y linting automático.
+  - Mantener CSS modular y preferir clases con nombres BEM o utilidades para evitar conflictos globales.
+
+- Tests y validación
+  - Añadir pruebas unitarias para handlers críticos (login, create/update profesores). Usar `Jest` + `React Testing Library`.
+  - Ejecutar pruebas básicas en CI (build, lint, test) antes de permitir merge.
+
+- Documentación y PR template
+  - Añadir un `PULL_REQUEST_TEMPLATE.md` que solicite: descripción, issue relacionado, pasos para probar, checklist (build/lint/tests), y screenshots.
+  - Mantener `CHANGELOG.md` o usar `github releases` para registrar novedades por versión.
+
+- Revisión de UI
+  - Para cambios de CSS/UX importante, añadir capturas o un pequeño vídeo GIF que muestre el antes/después.
+  - Verificar accesibilidad básica (contraste, texto alternativo en imágenes, enfoque de teclado).
+
+---
+
+## 7) Entrega
+
+Archivo actualizado: `REACT_CLASS_SPEC.md` (esta versión incluye consolidación de PRs y técnicas de trabajo).
+
+Si quieres, puedo:
+- generar un `PULL_REQUEST_TEMPLATE.md` y un `CHANGELOG.md` inicial, o
+- crear una rama con las pruebas (Jest + RTL) para los handlers de `Profesores` y un pipeline básico de GitHub Actions.
+Dime qué prefieres y lo preparo.
+
 ## 5) Entrega
 
 - Archivo creado: `REACT_CLASS_SPEC.md` (este documento).
