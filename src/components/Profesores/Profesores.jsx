@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Profesores.css';
 
-function Profesores({ currentView, currentUser, profesores, cursos, onCreateProfesor, onUpdateProfesor, onDeactivateProfesor, onAssignCursos, setCurrentView }) {
+function Profesores({ currentView, currentUser, profesores, cursos, onCreateProfesor, onUpdateProfesor, onDeactivateProfesor, onAssignCursos, setCurrentView, query }) {
   const [selectedProf, setSelectedProf] = useState(null);
   const [editing, setEditing] = useState(null);
   
@@ -26,6 +26,16 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
 
   // Avatar por defecto
   const defaultAvatar = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+
+  const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const highlightText = (text) => {
+    const q = (query || '').trim();
+    if (!q || q.length < 3 || !text) return text;
+    const parts = text.split(new RegExp(`(${escapeRegExp(q)})`, 'ig'));
+    return parts.map((part, i) => (
+      part.toLowerCase() === q.toLowerCase() ? <mark key={i}>{part}</mark> : part
+    ));
+  };
 
   useEffect(() => {
     if (currentView === 'profesores-add') {
@@ -175,7 +185,9 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
           </button>
         )}
         <div className="profesores-grid">
-          {listToShow.map(prof => (
+          {listToShow.length === 0 ? (
+            <div className="no-results">No se encontraron profesores que cumplan el criterio de búsqueda.</div>
+          ) : listToShow.map(prof => (
             <div key={prof.id} className="profesor-card">
               <img 
                 src={prof.foto || defaultAvatar} 
@@ -183,8 +195,8 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                 className="profesor-foto" 
                 onError={(e) => { e.target.src = defaultAvatar; }}
               />
-              <h3>{prof.nombreCompleto || prof.nombre}</h3>
-              <p className="profesor-area">{prof.areasAsignadas || prof.especialidad}</p>
+              <h3>{highlightText(prof.nombreCompleto || prof.nombre)}</h3>
+              <p className="profesor-area">{highlightText(prof.areasAsignadas || prof.especialidad)}</p>
               {(prof.anosExperiencia || prof.anosExperiencia === 0) && (
                 <p className="profesor-experiencia">{prof.anosExperiencia} años de experiencia</p>
               )}
@@ -203,7 +215,7 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
     );
   }
 
-  if (currentView === 'profesores-profile' && selectedProf) {
+    if (currentView === 'profesores-profile' && selectedProf) {
     const profCursos = cursos.filter(c => (selectedProf.cursosAsignados || []).includes(c.id));
     return (
       <div className="profesores-container">
@@ -219,8 +231,8 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
               />
             </div>
               <div className="profile-header-right">
-                <h3>{selectedProf.nombreCompleto || selectedProf.nombre}</h3>
-                <p className="profile-subtitle">{selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor'}</p>
+                <h3>{highlightText(selectedProf.nombreCompleto || selectedProf.nombre)}</h3>
+                <p className="profile-subtitle">{highlightText(selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor')}</p>
                 <div className="profile-status-row">
                   <span className="profile-status-badge">
                     {selectedProf.estado || (selectedProf.vigencia ? '✓ Activo' : '○ Inactivo')}
