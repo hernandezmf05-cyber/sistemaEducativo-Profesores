@@ -129,12 +129,43 @@ function App() {
       />
       {/* Vista de inicio con logo y contador */}
       {currentView === 'home' && (
-        <header className="App-header">
-          <h1>Sistema de Gestión de Profesores</h1>
-          <p>Bienvenido al sistema de gestión de profesores de la Universidad de Colorado.</p>
-          <p>Inicia sesión para acceder a las funciones.</p>
-        </header>
+  <div className="home-container">
+    <div className="home-hero">
+      <h1>Sistema de Gestión de Profesores</h1>
+      <p>
+        Plataforma centralizada para la administración de profesores,
+        asignación de cursos y control académico.
+      </p>
+
+      {!currentUser && (
+        <button
+          className="home-login-btn"
+          onClick={() => setCurrentView('login')}
+        >
+          Iniciar sesión
+        </button>
       )}
+    </div>
+
+    <div className="home-cards">
+      <div className="home-card">
+        <h3>📋 Gestión de Profesores</h3>
+        <p>Registro, edición y consulta de profesores.</p>
+      </div>
+
+      <div className="home-card">
+        <h3>📚 Asignación de Cursos</h3>
+        <p>Administra los cursos y profesores asignados.</p>
+      </div>
+
+      <div className="home-card">
+        <h3>🔐 Acceso Seguro</h3>
+        <p>Roles diferenciados para administradores y profesores.</p>
+      </div>
+    </div>
+  </div>
+)}
+
       {/* Vista de documentos con lista filtrada (CRUD completo) */}
       {currentView === 'documents-crud' && (
         <Documents
