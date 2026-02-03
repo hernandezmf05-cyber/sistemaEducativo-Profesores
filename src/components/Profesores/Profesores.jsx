@@ -245,7 +245,8 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
 
           {/* CONTENIDO EN GRID DE 2 COLUMNAS */}
           <div className="profile-content">
-            <div className="profesor-info">
+            {/* COLUMNA IZQUIERDA */}
+            <div className="profile-column">
               {/* Información Personal */}
               <div className="info-section">
                 <h4>Información Personal</h4>
@@ -267,7 +268,10 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                 <h4>Información Laboral</h4>
                 <p><strong>Contrato:</strong> {selectedProf.tipoContrato || 'No especificado'}</p>
               </div>
+            </div>
 
+            {/* COLUMNA DERECHA */}
+            <div className="profile-column">
               {/* Cursos Asignados */}
               <div className="info-section">
                 <h4>Cursos que Dicta</h4>
@@ -275,14 +279,6 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                   {profCursos.length > 0 ? profCursos.map(c => <li key={c.id}>{c.nombre}</li>) : <li>No tiene cursos asignados</li>}
                 </ul>
               </div>
-
-              {/* Perfil Profesional - ANCHO COMPLETO */}
-              {(selectedProf.perfilProfesional || selectedProf.descripcion) && (
-                <div className="info-section full-width">
-                  <h4>Perfil Profesional</h4>
-                  <p>{selectedProf.perfilProfesional || selectedProf.descripcion}</p>
-                </div>
-              )}
 
               {/* Documentos - SI HAY CV */}
               {(selectedProf.hojaDeVidaFile || selectedProf.hojaDeVida) && (
@@ -301,6 +297,16 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
               )}
             </div>
           </div>
+
+          {/* Perfil Profesional - ANCHO COMPLETO (DEBAJO) */}
+          {(selectedProf.perfilProfesional || selectedProf.descripcion) && (
+            <div className="profile-content-full">
+              <div className="info-section full-width">
+                <h4>Perfil Profesional</h4>
+                <p>{selectedProf.perfilProfesional || selectedProf.descripcion}</p>
+              </div>
+            </div>
+          )}
 
           {/* FOOTER CON BOTONES */}
           <div className="profile-footer">

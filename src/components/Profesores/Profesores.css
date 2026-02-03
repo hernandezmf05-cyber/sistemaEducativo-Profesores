@@ -428,6 +428,20 @@
   padding: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* COLUMNAS DEL PERFIL */
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* CONTENIDO ANCHO COMPLETO */
+.profile-content-full {
+  padding: 0 30px 30px 30px;
+  display: flex;
   gap: 20px;
 }
 
