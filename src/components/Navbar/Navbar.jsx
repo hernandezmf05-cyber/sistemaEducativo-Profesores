@@ -19,7 +19,7 @@ function Navbar({ query, setQuery, setCurrentView, toggleDarkMode, isDark, curre
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <img src="/descarga%20(1).png" alt="Sura logo" className="logo" />
+        <img src="/logo.png" alt="Sura logo" className="logo" />
         <h2>Sistema de Gestión de Profesores</h2> {/* Título de la aplicación */}
       </div>
       <ul className="nav-menu"> {/* Lista de elementos de navegación */}
