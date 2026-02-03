@@ -243,7 +243,7 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
             </div>
           </div>
 
-          {/* CONTENIDO EN GRID DE 2 COLUMNAS */}
+          {/* CONTENIDO EN GRID RESPONSIVO */}
           <div className="profile-content">
             {/* COLUMNA IZQUIERDA */}
             <div className="profile-column">
@@ -262,16 +262,16 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                 <p><strong>Áreas:</strong> {selectedProf.areasAsignadas || selectedProf.especialidad || 'No especificado'}</p>
                 <p><strong>Experiencia:</strong> {selectedProf.anosExperiencia || 0} años</p>
               </div>
+            </div>
 
+            {/* COLUMNA DERECHA */}
+            <div className="profile-column">
               {/* Información Laboral */}
               <div className="info-section">
                 <h4>Información Laboral</h4>
                 <p><strong>Contrato:</strong> {selectedProf.tipoContrato || 'No especificado'}</p>
               </div>
-            </div>
 
-            {/* COLUMNA DERECHA */}
-            <div className="profile-column">
               {/* Cursos Asignados */}
               <div className="info-section">
                 <h4>Cursos que Dicta</h4>
@@ -279,28 +279,30 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                   {profCursos.length > 0 ? profCursos.map(c => <li key={c.id}>{c.nombre}</li>) : <li>No tiene cursos asignados</li>}
                 </ul>
               </div>
-
-              {/* Documentos - SI HAY CV */}
-              {(selectedProf.hojaDeVidaFile || selectedProf.hojaDeVida) && (
-                <div className="info-section">
-                  <h4>Documentos</h4>
-                  {selectedProf.hojaDeVidaFile ? (
-                    <a href={URL.createObjectURL(selectedProf.hojaDeVidaFile)} download={`${selectedProf.nombreCompleto || selectedProf.nombre}_CV.${selectedProf.hojaDeVidaFile.name.split('.').pop()}`}>
-                      <button className="download-cv">Descargar CV</button>
-                    </a>
-                  ) : (
-                    <a href={selectedProf.hojaDeVida} target="_blank" rel="noopener noreferrer">
-                      <button className="download-cv">Ver CV</button>
-                    </a>
-                  )}
-                </div>
-              )}
             </div>
           </div>
 
-          {/* Perfil Profesional - ANCHO COMPLETO (DEBAJO) */}
+          {/* Documentos - CENTRADO ABAJO */}
+          {(selectedProf.hojaDeVidaFile || selectedProf.hojaDeVida) && (
+            <div className="profile-content-centered">
+              <div className="info-section">
+                <h4>Documentos</h4>
+                {selectedProf.hojaDeVidaFile ? (
+                  <a href={URL.createObjectURL(selectedProf.hojaDeVidaFile)} download={`${selectedProf.nombreCompleto || selectedProf.nombre}_CV.${selectedProf.hojaDeVidaFile.name.split('.').pop()}`}>
+                    <button className="download-cv">Descargar CV</button>
+                  </a>
+                ) : (
+                  <a href={selectedProf.hojaDeVida} target="_blank" rel="noopener noreferrer">
+                    <button className="download-cv">Ver CV</button>
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Perfil Profesional - CENTRADO ABAJO */}
           {(selectedProf.perfilProfesional || selectedProf.descripcion) && (
-            <div className="profile-content-full">
+            <div className="profile-content-centered">
               <div className="info-section full-width">
                 <h4>Perfil Profesional</h4>
                 <p>{selectedProf.perfilProfesional || selectedProf.descripcion}</p>
