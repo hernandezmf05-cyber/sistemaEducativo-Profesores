@@ -21,8 +21,6 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
     fotoFile: null, // Archivo de foto
     hojaDeVidaFile: null // Archivo de hoja de vida
   });
-  
-  const [selectedCursos, setSelectedCursos] = useState([]);
 
   // Avatar por defecto
   const defaultAvatar = 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
@@ -72,7 +70,7 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
         hojaDeVidaFile: null
       });
     } else if (currentView === 'profesores-assign-courses' && selectedProf) {
-      setSelectedCursos(selectedProf.cursos || []);
+      // Vista de asignación de cursos
     }
   }, [currentView, selectedProf]);
 
@@ -95,10 +93,6 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleCursoChange = (cursoId) => {
-    setSelectedCursos(prev => prev.includes(cursoId) ? prev.filter(id => id !== cursoId) : [...prev, cursoId]);
   };
 
   const handleAdd = () => {
@@ -160,17 +154,6 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
     }
   };
 
-  const handleDeactivate = (id) => {
-    onDeactivateProfesor(id);
-  };
-
-  const handleAssign = () => {
-    if (selectedProf) {
-      onAssignCursos(selectedProf.id, selectedCursos);
-      setCurrentView('profesores-list');
-    }
-  };
-
   const isAdmin = currentUser && currentUser.userType === 'profesor_admin';
   const activeProfesores = profesores.filter(p => p.estado === 'activo' || p.vigencia === true);
 
@@ -205,7 +188,7 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
               {isAdmin && (
                 <div className="admin-actions">
                   <button onClick={() => { setSelectedProf(prof); setEditing(prof.id); setCurrentView('profesores-edit'); }}>Editar</button>
-                  <button onClick={() => { setSelectedProf(prof); setSelectedCursos(prof.cursosAsignados || []); setCurrentView('profesores-assign-courses'); }}>Asignar Cursos</button>
+                  <button onClick={() => { setSelectedProf(prof); setCurrentView('profesores-assign-courses'); }}>Asignar Cursos</button>
                 </div>
               )}
             </div>
