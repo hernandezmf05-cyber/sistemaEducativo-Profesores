@@ -215,8 +215,10 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
     );
   }
 
-    if (currentView === 'profesores-profile' && selectedProf) {
+  if (currentView === 'profesores-profile' && selectedProf) {
     const profCursos = cursos.filter(c => (selectedProf.cursosAsignados || []).includes(c.id));
+    const isActive = selectedProf.estado === 'activo' || selectedProf.vigencia === true;
+    
     return (
       <div className="profesores-container">
         <div className="profesor-profile">
@@ -230,30 +232,32 @@ function Profesores({ currentView, currentUser, profesores, cursos, onCreateProf
                 onError={(e) => { e.target.src = defaultAvatar; }}
               />
             </div>
-              <div className="profile-header-right">
-                <h3>{highlightText(selectedProf.nombreCompleto || selectedProf.nombre)}</h3>
-                <p className="profile-subtitle">{highlightText(selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor')}</p>
-                <div className="profile-status-row">
-                  <span className="profile-status-badge">
-                    {selectedProf.estado || (selectedProf.vigencia ? '✓ Activo' : '○ Inactivo')}
-                  </span>
-                  {isAdmin && (
-                    <label className="switch" style={{marginLeft: '10px'}}>
-                      <input
-                        type="checkbox"
-                        checked={selectedProf.vigencia !== false}
-                        onChange={(e) => {
-                          const checked = e.target.checked;
-                          const updated = { ...selectedProf, vigencia: checked, estado: checked ? 'activo' : 'inactivo' };
-                          if (onUpdateProfesor) onUpdateProfesor(selectedProf.id, updated);
-                          setSelectedProf(updated);
-                        }}
-                      />
-                      <span className="slider" />
-                    </label>
-                  )}
-                </div>
+            <div className="profile-header-right">
+              <h3>{highlightText(selectedProf.nombreCompleto || selectedProf.nombre)}</h3>
+              <p className="profile-subtitle">{highlightText(selectedProf.areasAsignadas || selectedProf.especialidad || 'Profesor')}</p>
+              
+              {/* ESTADO CON TOGGLE */}
+              <div className="profile-status-row">
+                <span className={`profile-status-text ${isActive ? 'status-active' : 'status-inactive'}`}>
+                  {isActive ? 'activo' : 'inactivo'}
+                </span>
+                {isAdmin && (
+                  <label className="switch">
+                    <input
+                      type="checkbox"
+                      checked={isActive}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        const updated = { ...selectedProf, vigencia: checked, estado: checked ? 'activo' : 'inactivo' };
+                        if (onUpdateProfesor) onUpdateProfesor(selectedProf.id, updated);
+                        setSelectedProf(updated);
+                      }}
+                    />
+                    <span className="slider" />
+                  </label>
+                )}
               </div>
+            </div>
           </div>
 
           {/* CONTENIDO EN GRID DE 2 COLUMNAS */}
